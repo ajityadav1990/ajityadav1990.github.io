@@ -1,0 +1,2366 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+
+<title>SQL Tutorial</title>
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+<link rel="stylesheet" href="/w3css/4/w3.css">
+
+<style>
+a:hover,a:active{color:#4CAF50}
+table.w3-table-all{margin:20px 0}
+/*OPPSETT AV TOP, TOPNAV, SIDENAV, MAIN, RIGHT OG FOOTER:*/
+.top {
+position:relative;
+background-color:#ffffff;
+height:68px;
+padding-top:20px;
+line-height:50px;
+overflow:hidden;
+z-index:2;
+}
+.w3schools-logo {
+font-family:fontawesome;
+text-decoration:none;
+line-height:1;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale;
+font-size:37px;
+letter-spacing:3px;
+color:#555555;
+display:block;
+position:absolute;
+top:17px;
+}
+.w3schools-logo .dotcom {color:#4CAF50}
+.topnav {
+position:relative;
+z-index:2;
+font-size:17px;
+background-color:#5f5f5f;
+color:#f1f1f1;
+width:100%;
+padding:0;
+letter-spacing:1px;
+font-family:"Segoe UI",Arial,sans-serif;
+}
+.topnav a{
+padding:10px 15px 9px 15px !important;
+}
+.topnav .w3-bar a:hover,.topnav .w3-bar a:focus{
+background-color:#000000 !important;
+color:#ffffff !important;
+}
+.topnav .w3-bar a.active {
+background-color:#4CAF50;
+color:#ffffff;
+}
+a.topnav-icons {
+width:52px !important;
+font-size:20px !important;
+padding-top:11px !important;
+padding-bottom:13px !important;
+}
+a.topnav-icons.fa-home {font-size:22px !important}
+a.topnav-icons.fa-menu {font-size:22px !important}
+a.topnav-localicons {
+font-size:20px !important;
+padding-top:6px !important;
+padding-bottom:12px !important;
+}
+i.fa-caret-down,i.fa-caret-up{width:10px}
+#sidenav h2 {
+font-size:21px;
+padding-left:16px;
+margin:-4px 0 4px 0;
+width:204px;
+}
+#sidenav a {font-family:"Segoe UI",Arial,sans-serif;text-decoration:none;display:block;padding:2px 1px 1px 16px}
+#sidenav a:hover,#sidenav a:focus {color:#000000;background-color:#cccccc;}
+#sidenav a.active {background-color:#4CAF50;color:#ffffff}
+#leftmenuinner {
+position:fixed;
+top:0;
+padding-top:112px;
+padding-bottom:0;    
+height:100%;
+width:220px;
+background-color:transparent;
+}
+#leftmenuinnerinner {
+height:100%;
+width:100%;
+overflow-y:scroll;
+overflow-x:hidden;
+padding-top:20px;
+}
+#main {padding:16px}
+#mainLeaderboard {height:90px}
+#right {text-align:center;padding:16px 16px 0 0}
+#right a {text-decoration:none}
+#right a:hover {text-decoration:underline}
+#skyscraper {min-height:600px}
+.sidesection {margin-bottom:32px;}
+.bottomad {padding:0 16px 16px 0;float:left;width:auto;}
+.footer a {text-decoration:none;}
+.footer a:hover{text-decoration:underline;}
+#nav_tutorials,#nav_references,#nav_examples {
+display:none;
+letter-spacing:0;
+margin-top:44px;
+}
+#nav_tutorials a,#nav_references a,#nav_examples a{
+padding:2px 0 2px 6px!important;
+}
+#nav_tutorials a:focus,#nav_references a:focus,#nav_examples a:focus{
+color: #000;
+background-color: #ccc;
+}
+#nav_tutorials h3,#nav_references h3,#nav_examples h3{
+padding-left:6px;
+}
+.ref_overview{display:none}
+.w3-example{background-color:#f1f1f1;padding:0.01em 16px;margin:20px 0;box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important}
+.nextprev a {font-size:17px;border:1px solid #cccccc;}
+.nextprev a:link,.nextprev a:visited {background-color:#ffffff;color:#000000;}
+.w3-example a:focus,.nextprev a:focus{box-shadow:0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);}
+.nextprev a.w3-right,.nextprev a.w3-left {background-color:#4CAF50;color:#ffffff;border-color:#4CAF50}
+#w3-exerciseform {background-color:#555555;padding:16px;color:#ffffff;}
+.w3-theme {color:#fff !important;background-color:#73AD21 !important;background-color:#4CAF50 !important}
+.w3-theme-border {border-color:#4CAF50 !important}
+.sharethis a:hover {color:inherit;}
+#googleSearch a {padding:0 !important;}
+.searchdiv {max-width:400px;margin:auto;text-align:left;font-size:16px}
+div.cse .gsc-control-cse, div.gsc-control-cse {background-color:transparent;border:none;padding:6px;margin:0px}
+td.gsc-search-button input.gsc-search-button {background-color:#4CAF50;border-color:#4CAF50}
+td.gsc-search-button input.gsc-search-button:hover {background-color:#46a049;}
+input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus, .gsc-search-button {
+box-sizing:content-box; line-height:normal;}
+.gsc-tabsArea div {overflow:visible;}
+/*"nullstille" w3css:*/
+.w3-main{transition:margin-left 0s;}
+/*"nullstilling" slutt*/
+@media (min-width:1675px) {
+#main {width:79%}
+#right {width:21%}
+}
+@media (max-width:992px) {
+.top {height:100px}
+.top img {display:block;margin:auto;}
+.top .w3schools-logo {position:relative;top:0;width:100%;text-align:center;margin:auto}
+.toptext {width:100%;text-align:center}
+#sidenav {width:260px;}
+#sidenav h2 {font-size:26px;width:100%;}
+#sidenav a {padding:3px 2px 3px 24px;font-size:17px}
+#leftmenuinner {  
+box-shadow:0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+overflow:auto;
+-webkit-overflow-scrolling:touch;
+height:100%;
+position:relative;
+width:auto;
+padding-top:0;
+background-color:#f1f1f1;
+}
+#leftmenuinnerinner {overflow-y:scroll}
+.bottomad {float:none;text-align:center}
+#skyscraper {min-height:60px}
+}
+@media screen and (max-width:600px) {
+.top {height:68px}
+.toptext {display:none}
+}
+@font-face {
+font-family:'fontawesome';
+src: url('../lib/fonts/fontawesome.eot?14663396');
+src:url('../lib/fonts/fontawesome.eot?14663396#iefix') format('embedded-opentype'),
+url('../lib/fonts/fontawesome.woff?14663396') format('woff'),
+url('../lib/fonts/fontawesome.ttf?14663396') format('truetype'),
+url('../lib/fonts/fontawesome.svg?14663396#fontawesome') format('svg');
+font-weight:normal;
+font-style:normal;
+}
+.fa {
+display:inline-block;
+font:normal normal normal 14px/1 FontAwesome;
+font-size:inherit;
+text-rendering:auto;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale;
+transform:translate(0, 0);
+}
+.fa-2x {
+ font-size:2em;
+}
+span.marked, span.deprecated {
+ color:#e80000;
+ background-color:transparent;
+}
+.intro {font-size:16px}
+.w3-btn, .w3-btn:link, .w3-btn:visited {color:#FFFFFF;background-color:#4CAF50}
+a.w3-btn[href*="exercise.asp"],a.w3-btn[href*="exercise_js.asp"] {margin:10px 5px 0 0}
+a.btnplayit,a.btnplayit:link,a.btnplayit:visited {background-color:#FFAD33;padding:1px 10px 2px 10px}
+a.btnplayit:hover,a.btnplayit:active {background-color:#ffffff;color:#FFAD33}
+a.btnplayit:hover {box-shadow:0 4px 8px 0 rgba(0,0,0,0.2);}
+a.btnsmall:link,a.btnsmall:visited,a.btnsmall:active,a.btnsmall:hover {
+float:right;padding:1px 10px 2px 10px;font:15px Verdana, sans-serif;}
+a.btnsmall:hover {box-shadow:0 4px 8px 0 rgba(0,0,0,0.2);}
+a.btnsmall:active,a.btnsmall:hover {color:#4CAF50;background-color:#ffffff}
+@media screen and (max-width:700px) {
+#mainLeaderboard {height:60px}
+#div-gpt-ad-1422003450156-0 {float:none;margin-left:auto;margin-right:auto}
+#div-gpt-ad-1422003450156-3 {float:none;margin-left:auto;margin-right:auto}
+}
+@media (max-width:1700px) {#topnav .w3-bar:nth-of-type(1) a:nth-of-type(17){display:none;}}
+.w3-note{background-color:#ffffcc;border-left:6px solid #ffeb3b}
+.w3-warning{background-color:#ffdddd;border-left:6px solid #f44336}
+.w3-info{background-color:#ddffdd;border-left:6px solid #4CAF50}
+hr[id^="ez-insert-after-placeholder"] {margin-top: 0;}
+.phonebr {display:none;}
+@media screen and (max-width: 475px) {.phonebr {display:initial;}}
+</style>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-3855518-1', 'auto');
+ga('require', 'displayfeatures');
+ga('send', 'pageview');
+</script>
+
+
+
+<script async="async" type="text/javascript" src="//static.h-bid.com/w3schools.com/20180525/snhb-w3schools.min.js"></script>
+
+<script type='text/javascript'>
+var k42 = false;
+k42 = true;
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+gads.src = 'https://www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+var snhb = snhb || {}; snhb.queue = snhb.queue || [];
+snhb.options = {
+               logOutputEnabled : false,
+               autoStartAuction: false,
+               gdpr: {
+                     mainGeo: "us",
+                     reconsiderationAppealIntervalSeconds: 0
+                     }
+               };
+               
+// GPT slots
+var gptAdSlots = [];
+googletag.cmd.push(function() {
+googletag.pubads().disableInitialLoad();               
+googletag.pubads().enableSingleRequest();
+var leaderMapping = googletag.sizeMapping().
+var rbmrMapping = googletag.sizeMapping().
+// Smaller
+addSize([0, 0], []). 
+// Large Desktop
+addSize([975, 0], [[300, 250], [336, 280]]).build();
+gptAdSlots[3] = googletag.defineSlot('/16833175/RightBottomMediumRectangle', [[300, 250], [336, 280]], 'div-gpt-ad-1422003450156-3').
+defineSizeMapping(rbmrMapping).setCollapseEmptyDiv(true).addService(googletag.pubads());
+googletag.pubads().setTargeting("content",(function () {
+  var folder = location.pathname;
+  folder = folder.replace("/", "");
+  folder = folder.substr(0, folder.indexOf("/"));
+  return folder;
+})()
+);
+snhb.queue.push(function(){
+snhb.startAuction(["main_leaderboard", "wide_skyscraper", "bottom_medium_rectangle", "right_bottom_medium_rectangle"]);
+});
+googletag.enableServices();
+});
+</script>
+
+<script src="//static.h-bid.com/gdpr/cmp.stub.js" type="text/javascript"></script>
+
+<script type='text/javascript'>
+var stickyadstatus = "";
+function fix_stickyad() {
+  document.getElementById("stickypos").style.position = "sticky";
+  var elem = document.getElementById("stickyadcontainer");
+  if (!elem) {return false;}
+  if (document.getElementById("skyscraper")) {
+    var skyWidth = Number(w3_getStyleValue(document.getElementById("skyscraper"), "width").replace("px", ""));  
+    }
+  else {
+    var skyWidth = Number(w3_getStyleValue(document.getElementById("right"), "width").replace("px", ""));  
+  }
+  elem.style.width = skyWidth + "px";
+  if (window.innerWidth <= 992) {
+    elem.style.position = "";
+    elem.style.top = stickypos + "px";
+    return false;
+  }
+  var stickypos = document.getElementById("stickypos").offsetTop;
+  var docTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+  var adHeight = Number(w3_getStyleValue(elem, "height").replace("px", ""));
+  if (stickyadstatus == "") {
+    if ((stickypos - docTop) < 60) {
+      elem.style.position = "fixed";
+      elem.style.top = "60px";
+      stickyadstatus = "sticky";
+      document.getElementById("stickypos").style.position = "sticky";
+    }
+  } else {
+    if ((docTop + 60) - stickypos < 0) {  
+      elem.style.position = "";
+      elem.style.top = stickypos + "px";
+      stickyadstatus = "";
+      document.getElementById("stickypos").style.position = "static";
+    }
+  }
+  if (stickyadstatus == "sticky") {
+    if ((docTop + adHeight + 60) > document.getElementById("footer").offsetTop) {
+      elem.style.position = "absolute";
+      elem.style.top = (document.getElementById("footer").offsetTop - adHeight) + "px";
+      document.getElementById("stickypos").style.position = "static";
+    } else {
+        elem.style.position = "fixed";
+        elem.style.top = "60px";
+        stickyadstatus = "sticky";
+        document.getElementById("stickypos").style.position = "sticky";
+    }
+  }
+}
+function w3_getStyleValue(elmnt,style) {
+  if (window.getComputedStyle) {
+    return window.getComputedStyle(elmnt,null).getPropertyValue(style);
+  } else {
+    return elmnt.currentStyle[style];
+  }
+}
+</script>
+
+</head><body>
+
+<div class='w3-container top'>
+
+  <div class='w3-right w3-hide-small w3-wide toptext' style="font-family:'Segoe UI',Arial,sans-serif">THE WORLD'S LARGEST WEB DEVELOPER SITE</div>
+
+</div>
+
+
+
+<div style='display:none;position:absolute;z-index:4;right:52px;height:44px;background-color:#5f5f5f;letter-spacing:normal;' id='googleSearch'>
+
+  <div class='gcse-search'></div>
+
+</div>
+
+<div style='display:none;position:absolute;z-index:3;right:111px;height:44px;background-color:#5f5f5f;text-align:right;padding-top:9px;' id='google_translate_element'></div>
+
+
+
+<div class='w3-card-2 topnav notranslate' id='topnav'>
+
+  <div style="overflow:auto;">
+
+    <div class="w3-bar w3-left" style="width:100%;overflow:hidden;height:44px">
+
+      <a href='javascript:void(0);' class='topnav-icons fa fa-menu w3-hide-large w3-left w3-bar-item w3-button' onclick='open_menu()' title='Menu'></a>
+
+      <a href='/default.asp' class='topnav-icons fa fa-home w3-left w3-bar-item w3-button' title='Home'></a>
+
+      <a class="w3-bar-item w3-button" href="#linux" title='HTML Tutorial'>AWS</a>
+
+      <a class="w3-bar-item w3-button" href='/css/default.asp' title='CSS Tutorial'>Python</a>
+
+      <a class="w3-bar-item w3-button" href='/js/default.asp' title='JavaScript Tutorial'>MySql</a>
+
+      <a class="w3-bar-item w3-button" href='/sql/default.asp' title='SQL Tutorial'>Shell-Script</a>
+
+      <a class="w3-bar-item w3-button" href='/php/default.asp' title='PHP Tutorial'>Python</a>
+
+      <a class="w3-bar-item w3-button" href='/bootstrap/default.asp' title='Bootstrap Tutorial'>BOOTSTRAP</a>
+
+      <a class="w3-bar-item w3-button" href='/jquery/default.asp' title='jQuery Tutorial'>JQUERY</a>
+
+      <a class="w3-bar-item w3-button" href='svn.html' title='W3.CSS Tutorial'>svn</a>
+
+      <a class="w3-bar-item w3-button" id='topnavbtn_tutorials' href='javascript:void(0);' onclick='w3_open_nav("tutorials")' title='Tutorials'>MORE <i class='fa fa-caret-down'></i><i class='fa fa-caret-up' style='display:none'></i></a>
+
+      <a href='javascript:void(0);' class='topnav-icons fa w3-right w3-bar-item w3-button' onclick='open_translate(this)' title='Translate W3Schools'>&#xe801;</a>
+
+      class='fa fa-caret-down'></i><i class='fa fa-caret-up' style='display:none'></i></a>
+
+      <a class="w3-bar-item w3-button w3-right" id='topnavbtn_references' href='javascript:void(0);' onclick='w3_open_nav("references")' title='References'>REFERENCES <i class='fa fa-caret-down'></i><i class='fa fa-caret-up' style='display:none'></i></a>
+
+    </div>
+
+    <div id='nav_tutorials' class='w3-bar-block w3-card-2' style="display:none;">
+
+      <span onclick='w3_close_nav("tutorials")' class='w3-button w3-xlarge w3-right' style="position:absolute;right:0;font-weight:bold;">&times;</span>
+
+      <div class='w3-row-padding' style="padding:24px 48px">
+
+        <div class='w3-col l3 m4'>
+
+          <h3>HTML and CSS</h3>
+
+        </div>
+
+        <div class='w3-col l3 m4'>  
+
+          <h3>JavaScript</h3>
+
+          <div class="w3-hide-small"><br><br></div>
+
+        </div>
+
+        <div class='w3-col l3 m4'>
+
+          <h3>Server Side</h3>
+
+          <a class="w3-bar-item w3-button" href='/sql/default.asp'>Learn SQL</a>
+
+          <a class="w3-bar-item w3-button" href='/nodejs/nodejs_raspberrypi.asp'>Learn Raspberry Pi</a>          
+
+          <h3>Web Building</h3>
+
+          <a class="w3-bar-item w3-button" href="/w3css/w3css_templates.asp">Web Templates</a>
+
+        </div>
+
+        <div class='w3-col l3 m4'>
+
+          <h3>SVN</h3>
+
+          <a class="w3-bar-item w3-button" href='svn.html'>Learn Svn</a>
+
+        </div>
+
+      </div>
+
+      <br>
+
+    </div>
+
+    <div id='nav_references' class='w3-bar-block w3-card-2'>
+
+      <span onclick='w3_close_nav("references")' class='w3-button w3-xlarge w3-right' style="position:absolute;right:0;font-weight:bold;">&times;</span>
+
+      <div class='w3-row-padding' style="padding:24px 48px">
+
+        <div class='w3-col m4'>
+
+          <h3>HTML</h3>
+
+          <a class="w3-bar-item w3-button" href='/tags/default.asp'>HTML Tag Reference</a>
+
+        </div>
+
+        <div class='w3-col m4'>
+
+          <h3>CSS</h3>
+
+          <a class="w3-bar-item w3-button" href='/cssref/default.asp'>CSS Reference</a>
+
+          <h3>Server Side</h3>
+
+          <a class="w3-bar-item w3-button" href='/asp/asp_ref_response.asp'>ASP Reference</a>
+
+        </div>
+
+      </div>
+
+      <br>
+
+    </div>
+
+    <div id='nav_examples' class='w3-bar-block w3-card-2'>
+
+      <span onclick='w3_close_nav("examples")' class='w3-button w3-xlarge w3-right' style="position:absolute;right:0;font-weight:bold;">&times;</span>
+
+      <div class='w3-row-padding' style="padding:24px 48px">
+
+        <div class='w3-col l3 m6'>
+
+          <h3>HTML/CSS</h3>
+
+        </div>
+
+        <div class='w3-col l3 m6'>
+
+          <h3>JavaScript</h3>
+
+        </div>
+
+        <div class='w3-col l3 m6'>
+
+          <h3>Server Side</h3>
+
+          <h3>SVN</h3>
+
+        </div>
+
+        <div class='w3-col l3 m6'>
+
+          <h3>Quizzes</h3>
+
+        </div>
+
+      </div>
+
+      <br>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div class='w3-sidebar w3-collapse' id='sidenav'>
+
+  <div id='leftmenuinner'>
+
+    <div class='w3-light-grey' id='leftmenuinnerinner'>
+
+      <a href='javascript:void(0)' onclick='close_menu()' class='w3-button w3-hide-large w3-large w3-display-topright' style='right:16px;padding:3px 12px;font-weight:bold;'>&times;</a>
+<h2 class="left"><span class="left_h2">AWS</span> Tutorial</h2>
+<a href="#question1"><b>VPC</b></a>
+<a href="#question2"><b>Ec2</b></a>
+<a href="#question3"><b>ELB</b></a>
+<a href="#question4"><b>IAM</b></a>
+<a href="#question5"><b>RDS</b></a>
+<a href="#question6"><b>LAMP install on ec2</b></a>
+<a href="#question7"><b>Wordpress</b></a>
+<a href="#question8"><b>S3</b></a>
+<a href="#question9"><b>SNS</b></a>
+<a href="#question10"><b>Cloud watch</b></a>
+<a href="#question11"><b>Auto Scaling</b></a>
+<a href="#question12"><b>Elasticashe</b></a>
+<a href="#question13"><b>Cloud Treal</b></a>
+<a href="#question14"><b>AWS Directory Service</b></a>
+<a href="#question15"><b>Work Mail</b></a>
+<a href="#question16"><b>Network ACL</b></a>
+<a href="#question17"><b>VPN</b></a>
+<a href="#question18"><b>#########</b></a>
+<br>
+
+<h2 class="left"><span class="left_h2">Python</span>Tutorial</h2>
+
+<a href="#1"><b>Reserved Words</b></a>
+<a href="#2"><b>Data Type</b></a>
+<a href="#3"><b>Int,Float,Complex,Bool</b></a>
+<a href="#4"><b>str,Array,byte array,List</b></a>
+<a href="#5"><b>Tuple,Rang,set</b></a>
+<a href="#6"><b>Ecap Characters</b></a>
+<a href="#7"><b>Operater</b></a>
+<a href="#8"><b>Module & Libraryes</b></a>
+<a href="#9"><b>Input & Output Statement</b></a>
+<a href="#10"><b>Slice Operator</b></a>
+<a href="#11"><b>Example</b></a>
+<a href="#12"><b>if.py</b></a>
+<a href="#13"><b>and,or.py</b></a>
+<a href="#14"><b>Loop</b></a>
+<a href="#15"><b>Functions</b></a>
+
+<br>
+
+<h2 class="left"><span class="left_h2">MySql</span> Database</h2>
+
+<a href="#sql1">DB</a>
+
+<a href="#sql2">Table</a>
+
+<a href="#sql3">select</a>
+
+<a href="#sql4">update</a>
+
+<a href="#sql5">Delete</a>
+
+<a href="#sql6">MySql Command</a>
+
+<h2 class="left"><span class="left_h2">Linux</span> Tutorial</h2>
+
+<a href="#linux1">Boot Process</a>
+
+<a href="#linux2">Boot Partition</a>
+
+<a href="#linux3">Links</a>
+
+<a href="#linux4">ls</a>
+
+<a href="#linux5">vim</a>
+
+<a href="#linux6">zip</a>
+<a href="#linux7">shell</a>
+<a href="#linux8"> File system in Linux</a>
+<a href="#linux9">rpm ( Package Manager</a>
+<a href="#linux10">Grep</a>
+<a href="#linux11">awk</a>
+<a href="#linux12">sed</a>
+<a href="#linux13">Grub Password</a>
+<a href="#linux14">Run Lable</a>
+<a href="#linux15">Change the root Password</a>
+<a href="#linux16">Password Police( change Limition)</a>
+<br>
+<h2 class="left"><span class="left_h2">Shell</span>script</h2>
+
+<a href="#shell1">load.sh</a>
+
+<a href="#shell2">indiaedu.sh</a>
+
+<a href="#shell3">iptablescheck.sh</a>
+
+<a href="#shell4">frozen-mail.sh</a>
+
+<a href="#shell5">slogin.sh</a>
+
+<a href="#shell6">total.sh</a>
+<a href="#shell7">How do I start applications automatically on login?</a>
+<a href="#shell8">URL-listing.sh?</a>
+
+<h2 class="left"><span class="left_h2">Git</span>tutorial</h2>
+
+<a href="#git1">clint-setup for github</a>
+
+
+<h2 class="left"><span class="left_h2">###</span> ####</h2>
+
+<a href="#s1">DB</a>
+
+<a href="#sl2">Table</a>
+
+<a href="#sl3">select</a>
+
+<a href="#sl4">update</a>
+
+<a href="#sl5">Delete</a>
+
+<a href="#sl6">MySql Command</a>
+
+
+
+      <br><br>
+
+  </div>
+
+
+</div>
+
+</div>
+
+<div class='w3-main w3-light-grey' id='belowtopnav' style='margin-left:220px;'>
+
+  <div class='w3-row w3-white'>
+
+    <div class='w3-col l10 m12' id='main'>
+
+      <div id='mainLeaderboard' style='overflow:hidden;'>
+
+        <!-- MainLeaderboard-->
+
+
+
+        <!--<pre>main_leaderboard, all: [728,90][970,90][320,50][468,60]</pre>-->
+
+        <div id="snhb-main_leaderboard-0"></div>
+
+       
+
+      </div>
+
+<h1>AWS <span class="color_h1">Tutorial</span></h1>
+
+<div class="w3-clear nextprev">
+
+</div>
+
+
+
+<div>
+<h2><a name= "question1"></a>VPC</h2>
+<pre>*****************************************************************************************
+  Reson
+Networking & content Delivery
+vpc
+vpc
+your VPCs
+Create VPC
+Name tag  [ pradeep-vpc ]
+IPv$ CIDR block * [192.168.0.0/16 ]
+IPv6 CIDR block * (.) No IPv6 CIDR Block
+Tenany [ Default ]
+                  [ yes Create ]
+(1)SUBNETS
+             [ Create Subnet ]
+Name tag     [ pradeep-web-subnet-1a ]
+VPC          [vpc-4189ec2s|pradeep-vpc ] --> (select your VPC)
+VPC CIDRS    [CIDR| Status |Status Reason ]
+             [192.168.0.0/16  associated ]  
+Avallabillity Zone  [    ] <-- selete
+IPv4 CIDR block     [192.168.1.0/24 ]
+                      [yes,Create ]
+(2) [ Create subnet ]
+name Tag [ pradeep-web-subnet-1b ]
+VPC      [ vpc-4189es25| pradeep -vpc ]
+VPC CIDRS [ CIDR | status| Status Reason ]
+          [ 192.168.0.0/16   ASSOCIATED ]
+AVallabllity Zone  [ap-southeast-1b ]
+IPv$ CIDR Block [192.168.11.0.24 ]
+create 4 more subnet 2 for app and 2 for DB
+**********************************************
+Action --> Edit DNS HostName
+ DNS Hostname     (*)Yes
+                  ()NO
+***********************************************
+Route Table
+
+Create Route Tables
+Name Tag [ Pradeep-rt ]
+VPC      [ VPC-4189ec2s|pradeep-VPC ]--> (Select your VPC )
+                         [ Yes Create ]
+*************************************************
+[ Internet Gateways ]
+[ Create Internet Gatway ]
+Name Tag [ pradeep-igw ]
+  [ Attac to VPC ]
+VPC [ VPC-4189ec2s|pradeep-VPC ]
+                   [ Yes Attach ]
+**************************************************
+[ Route Tables ]
+                   [Routes]
+[Edit]
+  [ Add another root ]
+[0.0.0.0/0]        [igw-2c724949 ]
+             [save ]
+[ subnet Associations ]
+[salete ] [Associat ]
+[*]
+[*]    
+[*]
+[*]
+     [Save]
+******************************************************
+assin Public IP Difault 
+[ select subnet ]
+[subnet Action ]
+Modifi autoassining IP setting
+Auto.assion IPv [*] Enables </pre>
+<h2><a name= "question2"></a>Ec2 </h2>
+<pre>****************
+Services 
+ Ec2 
+Launch Instance
+ Instance 
+Amazon linux    [Select]
+Select -> t2.micro
+ [ Next: configure Instance details ]
+Number of instances (.) [    ]
+Purchasing option {} Request spot instances
+Network [     ] --> select your VPC
+subnet [      ] <--  select subent like web/app/DB 
+Auto-Assign Public IP [ ENable]
+IAM Role [   ]
+Enable Tenination protection [*} Protect aginst accid--
+Monitoring [] Enable Cloudwatch Detailed Monitering 
+Tenancy [          ]
+Primary IP 
+          [192.168.1.111]
+next add storage 
+size (GIB)
+[8] <-- by Default
+Next Add Tages 
+
+[Key (127 characters maximun ) | Value (256 characters maxiam ]
+[ Name                         | Web-server-1a                ]
+[Reaview and Launch ]
+**************************************
+Assign a security group [*] Create a New Security group 
+Security group name [ web-server-1a]
+Decription: [ web-server-1a create 2017-04-08t13]
+[ Type |Protocal | port Rang | Source ]
+[ssh]    [TCP]   [22]    [custom] [0.0.0.0/0]   * --> DElete Default RULe]
+                     [Revoew and Launch }
+   [launch ]
+[ Create New Key Pair ]
+key pair name  [ xyz ]
+                 [ launch instans ]
+your instances are now launching
+*******************************
+use putty keyzen 
+          file|key|conversions|  <------Import Key
+            select .ppk file
+[save privete key ]
+                   yes 
+open putty
+         Host Name (or IP Address ]   Port
+                   [52.221.177.53 ]   [22]
+ssh auto   [             ] <- select your ppk file & Open
+**********************************************</pre>
+<h2><a name= "question3"></a>ELB</h2>
+<pre>****************
+[ELB] .........Load Balancer
+ec2 management consol
+[create Load Balancer]
+(*) classic load Balancer
+load Balances name : [ pradeep-elb]
+create Lb  inside [ vpc-4189ec2s(192.168.0.0/16/pradeep-vpc ]
+select your VPC
+[NEXT : Assign Security Groups ]
+Select your Subnet 
+           [ Next : Assign Security Group ]
+[*]  Create a new security group 
+security group name: [ pradeep-web ]
+Description : [ pradeep-web ]
+               [Next : configure security settings ]
+************
+configure health check 
+     Ping Protocol [tcp ]
+              [ Next aDD EC2 instances ]
+*************
+Add EC2 Instances
+[*] instance
+[*]
+{*] 
+                   [ Next Add Tag ]
+key           Value
+[Name]        [pradeep-elb-web ]
+       [create ]
+                  [close ]
+ instance 
+after some time Refarcer Page 
+                        () referse 
+ [ Description ]
+DNS Name : [ Pradeep-elb-....com ] ---> copy this & Past in URL THEN REFERce Page.
+_________- Go to instances & run command
+nslookup ----------(past URL) 
+get Result</pre>
+<h2><a name= "question4"></a>IAM</h2>
+<pre>*****************************************************************************************
+ *********************IAM****************
+IAM management Console
+service -------IAM ----- Users
+ADD User
+User Name [ Ajeet ]
+Access Type [*] programming access
+            [*] AWS Management console Access
+        [ next : permission ]
+[ Next: Review ]
+             [ create User ]
+[download .csv ]  {msoffice }
+user name |  password | Access Key ID
+Ajeet     |ern$Dbj+T@ | AKIAJYCZNWN$S^#DB
+
+Security Access Key  | console login link 
+********             | https://481294420737.signi.aws.amozon.com/consol
+[ check account ID]
+service Resource group [ ajeet.ext]singapur|support
+{My Account]
+         [ open link in new tob }
+you are aligable to see accous ID Like   [ Account ID : 71832465921 }
+ account 
+user Name : [  ]
+password :  [  ]          { copy past .csv user name and password }
+  set your new password
+user [ Ajeet ] click on user name
+[ Permissions ]  
+[ ADD Permission ]
+Attach existing polies Directly 
+[ Filter Pollcy Type {* ec2  }  ]
+* . Amozan EC2 FuLL Access AWS MAnagement
+                              [Next Review ]
+Add Permision </pre>
+<h2><a name= "question5"></a>RDS</h2>
+<pre>*****************************************************************************************
+*****************RDS (Relational Database Service )***********
+[SG } subnet Groups 
+Name = Test-sg
+VPCID= SelectYour VPC
+Availability zone [Select ]
+subnet [ select your subnet where you want stor ]
+[Add]
+availablity Zone [ select Diffrent }
+subnet [ select new subnet ]
+             [create ]
+og [ optison groups ]
+ name        [test-og]
+Description  [test-og]
+engine       [mysql]
+majer engine version [5.6]
+               [ create ]
+PG parameter Group
+parameter group family [MySql5.6]
+group name             [test-pg]
+Description            [test-pg]
+                 [create]
+[instances ]
+[mysql]   [salect]
+[NEXT STEP ]
+db Engine version [ mysql5.7.11
+db instance class [ select ]
+multi-AZ Deployment [ No]
+storage type  [ Gernal Purpose ]
+VPC          [ Select VPC ]
+subnet Group [ select ]
+publicly Accessible [ No ]
+Avalablity Zone [ select ]
+Database name   [ testdbadmin]
+database Port   {3306]
+option Group [ test og ]
+backup retention period [7]day
+Backup window [  ]
+ [ lounch DB INstance] </pre>
+<h2><a name= "question6"></a>LAMP</h2>
+<pre>*****************LAMP install on ec2 ********** 
+ec2 terminal 
+#yum install httpd24 php56 php56-mysqlnd -y
+# yum-config-manager  --enable epel
+#yum update -y
+# yum install -y phpMyAdmin
+# vi /etc/httpd/conf.d/phpMyAdmin.conf
+Require IP 127.0.0.1
+(Require all granted
+                        [TOP]
+Deny from All 
+Deny from None
+
+equire IP 127.0.0.1
+(Require all granted
+                        [Botam]
+Deny from All 
+Deny from None
+wq!
+**********
+RDS AWS CONSOL
+Instance   get no outbound pemision err
+security group ---> Test.rds-server
+edit 
+Type              source 
+mysql/auroro      sg-cs......test-web-server  [ webserver security group ID ]
+go instance
+Endpoint [ test-rds............rds.Amozanaws.com:3306} (authorized)
+copy
+Go -Ec2    Terminal 
+# vim /etc/phpMyadmin/config.inc.php
+scfg['server'][$1]['host]='localhost';//
+mysql hostname or Ip address
+Delete localhost & past end point 
+wq!
+#service httpd restart
+instance ---> copy public IP
+URL --52.60.214.168/phpmyadmin
+username=dbadmin
+password= dbadmin123
+(now any one want work on your DB can Work)
+------------------------------------
+By default data Brows your computer 
+         []noofile chosen   [max2.048kb]
+incrise import database
+Go ec2 terminal
+#vi /etc/php.int
+lastlie  /2m    (search & get like )
+upload_max_file size  -2M  ( Replace it 1024M )
+service httpd restart
+#vi /etc/php.inc
+search past_max_size-8M (1024M)
+go your phpmyadmin page &refrce this size will incrige </pre>
+<h2><a name= "question7"></a>Wordpress</h2>
+<pre>****************
+*************wordpress*********
+go to ec2 terminal 
+#cd /var/www/html
+wget https:wordpress.org.lateste.zip
+#unzip wordpress
+chmod 777 wordpress
+cd wordpress
+cp wp-config.sample.php
+wp-config.php
+#mysql -h RDS Patch -u user -p
+create user testuser;
+create database testdb;
+grant all on testdb.* to 'testuser''@'%' identified by 'ajeetyadav'
+exit
+cp wp-config-simple.php wp-config.php
+URL -> ip/wordpress</pre>
+<h2><a name= "question8"></a>S3</h2>
+<pre>****************
+S3 (storage )              [EBS is also storage ]
+s3 / create bucket --> [Bucket Name ] unik name ww /Region/select /create
+Next/Next/Next  (now you can see your Bucket )
+Enter on Bucket Nameand get many optison
+1.  properties -> vesioning [ it always create Replecat ]
+loging - (enable log when some one loging with s3 enter ther 
+2.   bucket Name (where you want store log )
+if you want give folder name also
+3.  static website hostin [host your website without server 
+Permissions --- you can give permission your bucket for 
+Admin -->
+User --> give permeision user for buucket
+other
+IAM--> create User / give permision S3
+Download --> S3 browser { thired party software }
+open ->s3 browser
+Account Name - test
+securit key - enter 
+access ket -enter
+uplode --> file jpg file
+
+services / s3 -cleck your bucket  / click on downloded jpg file
+Click / link 
+that image run with new link 
+s3/backet /select your jpg file[data]/more/make public/make public
+#aws s3 ls
+**********you see s3 Data bicause IAM role we defin full permison on server befour
+you can go IAM and Detach Permision</pre>
+<h2><a name= "question9"></a>SNS (simple Notification service)</h2>
+<pre>****************
+*****************SNS (simple Notification service) **
+Autoscaling
+service /Sns /getss /getstarted/create topic 
+Topic Name [high CPU]
+Display name [high CPU]
+                        create Topic
+select -high cpu -actions - suscribe to topic 
+topic ARN  [  ]
+protocat [email]
+endpoint [ ajeetyadav.extramarks@gmail.com]
+Go - your gmail account -- confirm
+subscription
+############secand way is go your EC@ matchin and create Alarm and go to SNS and scribe ###########
+creat one more Alram for low CPU
+**************************************
+AMI  INSTANCES /Action /Image 
+Images Name         [   ]
+Image Description   [   ]
+No Reboot [*]
+                   [create Image ]
+</pre>
+<h2><a name= "question10"></a>cloud watch</h2>
+<pre>****************
+***********************cloud watch************                    
+cloudwatch /d***ashboards/create
+dashboard /Dashboard Name [ app-server ]
+create /configure [ compare matric over time ]
+( Bydefault we get CPU monitring for ram and harddisk we need to create costom monitring )
+EC2 /per /instance matrics / CPU Utlization /add to search /pradeep-aws-web1/subnet/main (select ) --> create
+Dublicket --> click --> widget type /number</pre>
+<h2><a name= "question11"></a>Auto Scaling</h2>
+<pre>****************
+************Auto SCaling*************
+launch configrations /create Auto scalling Group / create launch configrtison / myAMIs
+select / select server 
+Name /launch -config-2017416
+IAM role  /select/add next
+Do not need to change storage
+Next --> security Group ( select security group which is alrady Defani for Applecation server )
+                       [review ]
+create launch configration / newkey
+[*] acknowledge that -----------
+-------------------------------
+            create launch configuration
+************ Auto scaling group 
+Group name [ autoscling-group ]
+group size start with [*] instances
+Network [select your VPC]
+subnet [select subnet both you select befour ]
+[advanced Details ] click on this 
+load balancer [*]
+classic load blancer [ select Elb] your
+[Next:confiure scalling policy ] click
+Next /Next / Name - As-server  /review /create 
+---------------------------------
+create auto scalling Policies
+scaling Policies / Add policy /
+Name [scalup ]
+Execute Policy When [ select your Alarm ]
+take the Action [ADD]  [1]
+instance need [300]secand
+              [create ]
+create one more scaling policy for scale-down for low CPU ]
+Detales  Edit
+min -[0]
+max -[3]
+---------------------------------------
+yum install stress
+# stress --cpu8 --timeout 600  ** for give load **</pre>
+<h2><a name= "question12"></a>Elasti Cache</h2>
+<pre>****************
+*****************Elasti Cache **************
+Elasticashe / subnet group / name /pradeep -ec-sg / enter Discription
+ /Select VPC /AZ select /subnet /DB subnet Add[2]
+__________________________________________________
+parameteer group /Name /pradeep-ec-pc /Description /enter /create
+___________________________________________________
+memcached /create  /[.] memcaches
+name / pradeep-ec /Enging Version /compatibility /select /parameter 
+group select /node type /select server
+advanced memcached setting 
+subnet group =new create /create 
+[55:37]</pre>
+<h2><a name= "question13"></a>Cloud Treal</h2>
+<pre>****************
+*****Cloud Treal ****************
+cloud trail a amozan service which Record API calls [ every Activite IN your AWS Account .
+Cloud Trail integrate with  S3 , SES ,SMS ,API
+first create s3 bucket where we store Record
+cloud Trail/ get start Now / trail Name..../select All rision or single Resion
+/create New S3 bucket or select your bcket /create 
+[give your bucket permition ]
+click  on your new cloud trail /
+Api activity history
+[you can see all history ]
+[ cloudTrail ] 
+first create SNS and sucrin eith your mail id
+create a s3 bucket for store log give your s3 bucket permision
+cloud trail | create | Name [ ajeet_ct ]
+select all reasion   () yes  (.)No
+S3 bucket [select Your Bucket ]
+                    [create ]
+API activity History </pre>
+<h2><a name= "question14"></a>AWS DIrectory Service</h2>
+<pre>*******************AWS DIrectory Service **********
+work like AD in Amozon
+[admin@123]
+simple AD/ set up directory /apexday.com
+Director DNS [apexday.com]doman name
+Net Bios name [apexday.co]
+Administrotor password [ if you have ad type password or new password ]
+confirm password [-------]
+Directory size (.)small
+               ()Lorge
+  [select your VPC ]
+Next   [select your subnet 2 ]
+                      [Next stop ]
+                     [ create simple AD ]
+</pre>
+<h2><a name= "question15"></a>Work Mail</h2>
+<pre>************************WorkMail**********
+supported Regions - Eu (Ireland)
+                  -US East (N.virginia)
+                  -US West (Oregon)
+select Resgions /get started /quick setup
+Organization name*https:// [Apex]
+                           [create]
+Go your Directiory service / select privice /regions / n.version
+Amozan Workmail click on this 
+    [continue ]
+/create user /user name [ ajeet]
+             First name [Ajeet ]
+             last name [yadav]
+password [admin@123]   [Next ]
+                       [add user]
+change Difault Domain 
+Damain /add domain name [ apexday.com]
+copy past all setting on godady account</pre>
+<h2><a name= "question16"></a>Network ACL</h2>
+<pre>****************Network ACL **********
+security group always use for server but acl use for subnet
+Group
+Bydefault all rule Deny for SEcurity Group 
+By default all rule allow for ACL
+Network ACLs/select VPC /Inbond RULE/edit
+[99]  [all traffic]   [ALL]    [123.111.222.131/32](for spacific ip)
+Deny                   select whic subnet you don't want give Access </pre>
+<h2><a name= "question17"></a>VPN</h2>
+<pre>**********************VPN***************************
+name tag [test-vpc]
+[attach to vpc] 
+vpc  [.......] select your VPC
+                   [yes attach ]
+VPN connection /create VPN connection 
+Name tag [ test-VPN ]
+virtual private gatway [........]select your VPC
+custom gatway(.) exiting [          ] select your CGW 
+Routing options ) Dynamic [Require BGP0(.)static 
+             static IP prefixes [192.168.2.0/24] your office static ip rang
+           [yescreate]
+after creating VPN ternal
+download config file and go your office entry line on your firewall setup 
+open VPN
+or give downlod file your office It person
+downlod config /vender [......]
+if your firewall listed in thisthen select other then [ generic]
+               [yes Downlood ]
+route table /poute propogation /enable both of them  [*]
+                                                     [*]                         
+ </pre>
+<h2><a name= "1"></a>Python</h2>
+<pre>##############################Reserved Words#########################
+Reserved Words :-    33
+
+True, False,None.and.or,not,is,if,else.elif,while,for,break,continus,returns,in,yeld,
+try,except,finally,raise,assert,import,form,as,class,def,pass,globle,nonlocal,lambda,del,with,
+
+for print list of reserved keyword in python.
+import keyword
+keyword.kwlist<pre>
+<h2><a name= "2"></a>Data Type</h2>
+<pre>
+We have total inbilleted data type is 14
+1)  int
+2)  Float
+3)  Complex
+4)  Bool
+5)  Str
+6)  Bytes
+7)  Bytearray
+8)  Range
+9)  List
+10) Tuple
+11) Set
+12) Frozenset
+13) Dict
+14) None
+ str :- s='durga'
+        S='durga'
+Both are right but ues single core in python (recmendet)
+<pre>
+<h2><a name= "3"></a>Int</h2>
+<pre>
+Print number without decimal point like (1,2,3,4,5,12762)etc
+int ( hold integral values).
+<pre>
+<h2><a name= "3"></a>Float</h2>
+<pre>
+Float Represent decimal Values.
+<pre>
+<h2><a name= "3"></a>Complex</h2>
+<pre>
+Complex Number mostaly use for scientific or mathematic Application.
+<pre>
+<h2><a name= "3"></a>Bool</h2>
+<pre>
+True and False (T & F always be capital)
+True  = 1
+False = 0
+<pre>
+<h2><a name= "4"></a>Str</h2>
+<pre>
+Single Quotes = str
+Double Quotes = string
+Triple Quotes = multiline String Literals
+<pre>
+<h2><a name= "4"></a>Byte</h2>
+<pre>
+It represent a group of byte number just like an array
+1. in the range 0 to 256
+2. immutable
+x=[10,20,30,40]
+B=byte(x)
+<pre>
+<h2><a name= "4"></a>Byte Array</h2>
+<pre>
+Byte array is same like byte but it is mutable
+x=[10,20,30,40]
+B=bytearray(x)<pre>
+<h2><a name= "4"></a>List</h2>
+<pre>
+List work just like array & every value store on perticuler index we can store 
+multiple data type in one variable(int,str,flot,etc).
+Insertion order is preserved and duplicates are allowed
+<pre>
+<h2><a name= "5"></a>Tuple</h2>
+<pre>
+Is same like list but only one different is tuple is immutability.<pre>
+<h2><a name= "5"></a>Range</h2><pre>
+Range data type represent a sequency of values
+it represent values form 0 to 9 (end -1)
+Range take only on argument
+R=rang(10)
+output 1,2,3,4,5,6,7,8,9,10
+<pre>
+<h2><a name= "5"></a>set</h2>
+<pre>DIFFERENT BETWEEN LIST AND SET
+List                                                           SET
+duplicate is allow orde is regiverd list applicable[]         duplicate is not allow order is not regrved set applcable[]
+index                                                         not allowed
+slicig                                                        not allowed
+immutable                                                     not allowed
+<pre>
+<h2><a name= "6"></a>Ecap Characters</h2><pre>                      
+\t                         | \r
+s='ajeet\tsoftware'        | \t  
+print (s)                  | \b 
+ajeet   software           | \f
+\n                         | \'
+s='ajeet\nsoftware'        | \\
+print(s)                   | \v
+ajeet                      | \n
+software
+<pre>
+<h2><a name= "7"></a>Operater</h2><pre>  
+1. Arithmetic Operators
+2. Relational Operators or comparison Operators
+3. Logical Operators
+4. Bitwish Operators
+5. Assignament Operators
+6. Special Operatos 
+<pre>
+<h2><a name= "7"></a>Operater</h2>
+<h2><a name= "7"></a>Arithmetic Operators</h2><pre> 
+Addition (+), Subtraction (-), Multplication (*),Division (/), 
+Modul (%),Floor Division ( // )
+Exponent Operator or Poer Operators  ( ** )
+Test.py
+a=10
+b=2                                            Output
+print("a+b =",a+b)                            12
+print("a-b =",a-b)                            8
+print("a*b =",a*b)                            20
+print("a/b =",a/b)                            5.0
+print("a%b =", a%b)                           100
+
+if you want apply  + operater for string complcery both operators should be string.
+if you use * operaters in string one operaters shoud be string & 2 should be int type only.
+exp :-   'durga'*3  = durgadurgadurga
+<pre>
+<h2><a name= "7"></a>Relational Operators</h2><pre> 
+>
+>=
+<
+<=
+These operator or Int and Str both but time of Str is Count alfabatical order like --
+a = 'durga'
+b = 'ravi'
+print ("a>b is ", a>b)     is false { because r > d }
+<pre>
+<h2><a name= "5"></a>Equality Operators</h2><pre> 
+      ==  and  !=
+    10 == 20  ----------- False
+    10 != 20 ------------ True
+<pre>
+<h2><a name= "7"></a>Logical Operater</h2><pre> 
+and  ------> if both arguments are True Then only False
+or   ------> if at_list one argument is true then true 
+<pre>
+<h2><a name= "7"></a>For non-boolean Types:</h2><pre> 
+0             False
+non Ziro      True
+empty string  False
+<pre>
+<h2><a name= "7"></a>Bitwish Operatos</h2><pre> 
+&
+\
+~
+<<
+>>
+These operators is applicable only for int and boolean.
+<pre>
+<h2><a name= "7"></a>Shift Operators</h2><pre> 
+  <<  == > left shift operators
+  >>  == > Right Shift
+<pre>
+<h2><a name= "7"></a>Assignament Operators</h2><pre>
+ Increment & Decrement Operators not available in Python
+a = 10
+a is assign in place of 10 so it is assignement operater.
+<pre>
+<h2><a name= "7"></a>Compount assigment Operater</h2><pre> 
+Other operater come with assigment operator is called compound assigment operators.
+   +=   |  **=
+   -=   |   &=
+   *=   |   \=
+   /=   |   ^=
+   %=   |   >>=
+   //=  |   <<=
+<pre>
+<h2><a name= "7"></a>Ternary Operator</h2><pre> 
+x = First value if condition sles second value
+x = 30 if 10 < 20 else 40
+print (x)
+<pre>
+<h2><a name= "7"></a>Spacial Operators</h2><pre>
+1. Identity Operators
+2. Membership Operators
+
+Identity Operators :-
+  is      |
+          | Identity Operators
+ is not   |
+
+ examaple   a is b
+
+ Membership Operators :-
+      In       |
+               | Membership Operators
+      not in   |
+Exam ;-  s = " hello learing python is very very easy "
+         Print ("hello" in S )
+         Print ("L" in s)
+output = True
+output = True
+<pre> 
+<h2><a name= "8"></a>Module & Libraryes</h2><pre> 
+Module     -->   Module is nothing but a group of function , Variable, Classes.
+Libraryes  -->   A Group Of Module is Library.
+Example :-  math Module provide severial matimital function in Python.
+         import math
+         Print (math.sqrt(16))
+         Output  -> 4.0
+aliasing   we can rename module
+           import math as m
+           print(m.sport(25))
+           Print (m.pi)
+<pre>
+<h2><a name= "9"></a>Input & Output Statement</h2><pre> 
+Python - 2
+   Read Dynamic data from the Keyboard
+For this there are Two function are available.
+1)  row_input(" Enter some number")
+    input("Enter Some Number")
+x = row_input("Enter some number")
+what ever we enter conider as str type only.
+we required to use type costing functions
+
+Y = input("enter some number")
+is not consider as str type what ever type provide teh some type will be consider.
+
+Python 3 
+
+    we have only input function
+   Y = input ("enter some number")
+ What ever  we enter consider as str type only we required to type casting function.
+Exm :-  enter two number and print output.
+     x = input("Enter first number")
+     y = input("Enter Second number")
+     i = int(x)
+     j = int(y)
+     print(" the sum : " , i+j)
+         or
+   x = int(input("enter first number"))
+   y = int(input("Enter Second Number"))
+   Print ("The sum : ", X=y _
+       or
+ Print ("The Sum :",int(input("enter First Number:")) + int(input("enter second Number")) 
+
+Print list of modules...
+help("modules")
+<pre>
+<h2><a name= "10"></a>Slice Operator</h2><pre>
+In python every think is in index
+we have two type index
+Positive Index(L/R)        0 1 2 3 4 
+                           Ajeet
+Negative Index(R/L)        -5 -4 -3 -2 -1
+ 
+Slice operator Work
+s = AJEET     |  S=ajeet
+S[-1]         |  s[1:4] = jee
+T             |  s[2:4] = ee
+S[1]          |  s[1:]  = jeet
+j             |  s[:4] = ajeet
+S[-4]         |  s[:]  = ajeet
+j             |  s[-1-4] = nothing to print because slice operator never start lower value to higher value
+s[-4:-1]  = jeet
+s[1:100]  = jeet
+
+Find length of string
+s='ajeet'
+len(s)
+output -5
+<pre>
+<pre>
+<h2><a name= "11"></a>Example</h2><pre>
+<h1>print.py</h1>
+# print ("Hello Ajeet")
+# print ("Hello 'ajeet' how are you")
+# print ('Hello \n ajeet')
+# print ('Hello \t ajeet')
+# print (" This is \\\\ back Slase")
+# print (r'Hello this \ back slase')
+# print ('/')
+# print ('\\n')
+# print emoji "https://unicode.org/emoji/charts/" replace (+ to 000 in source code)
+# print ("\U0001468")
+<h1>replace.py</h1>
+# replace() method
+string = "she is beautiful and she is good dancer"
+print(string.replace(" ","_")
+
+print(string.replace("is","was")
+
+print(string.replace("is","have", 1)
+
+name = "   Har  shit  "
+dots = "........"
+#lstrip() method
+print(name + dots)
+print(name.lstrip() + dots)
+print(name.rstrip() + dots)
+print(name.strip() + dots)
+print(name.replace(" ","") + dots)
+<h1>Operaters.py</h1>
+name = "ajee"
+# if we want add t in name then
+name += "t"
+print(name)
+we can use -----------
+name -=
+name *=
+name /=
+etc
+<h1>multipal-variable.py</h1>
+# how to decler multipal variable on single line
+# name,age = "harshit" , "24"
+# print "hello" + name + "your age is " + age)
+# we can also give single value to multipal variable
+# x=y=z=1
+print(x+y+z)
+# how to input tow input in one time
+name, age - input("Enter your name and age").split()
+# print (name)
+# print (age)
+<h1>Variable.py</h1>
+# we do not need to exaplen what kind of data type (int,flot,str) we are using in python
+# rule of variable
+# 1.  you can not start variable with number.
+# 2.  you can not start variable with spacel symble.
+# 3. you can start variable with alphabatic or underscore like (_name +"anu")
+# 4. user_one_name = "rohit" (snake case writing) { python style gide}
+# 5. userOneName = "rohit" (camel case writing) 
+<h3>Add two string</h3>
+# first_name = "ajeet"
+#last_name = "yadav"
+# print (first_name + last_name)
+<h3>We can not add str + int</h3>
+# first_name = "ajeet"
+# last_name = 1 
+# print ( first_name + last_name ) output errar
+<h3>we can maltipye * str with int</h3> 
+# first_name = "ajeet"
+# last_name = 4
+# print ( first_name * last_name )
+<h3>Input function always get variable as a str</h3>
+a = input ("enter your name :")
+print ("hello" + a )
+b = input("Enter your Age")
+print (a + " your age is " + b)
+18
+<h1>string-mathred.py</h1>
+# string mehtods part one
+name = "HaRsHit vASHISThA"
+
+# 1. len() function
+length = len(name)
+print(length)
+
+# 2. lower() method
+print (name.lower())
+
+# 3. upper() method
+print(name.upper())
+
+# 4. tital() method
+print (name.title())
+
+# 5. count() method
+print(name.count("h")) 
+<h3>string- indexing.py</h3>
+x = "python"
+position (index number)
+p = 0, -6
+y = 1 , -5
+t = 2 , -4
+h = 3 , -3
+o = 4 , -2
+n = 5 , -1
+print(x[2])
+print(x[-2])
+<h3>string slicing</h3>
+print(x[2:5])
+print(x{-1:3])
+print(x[:])
+print(x[1:])
+<h3>string stap arugument</h3>
+print (x[0:6:2])
+print(x[-1:3})
+print(x[:])
+print(x[1:]
+<h3>string imutable.py</h3>
+# we can not replace charecter in original string ( immutable)
+string = " string"
+string[1] = 'T' {errar}
+# with help of replace mathred we can replace we can replace but we have to store it store it in new variable ok
+X = print(string.replace('t','T'))
+<h3>string formating.py</h3>
+name = "harshit"
+age = 24
+print("hello" name + "your agr is " + str(age))
+python 3
+print (f"hello {} your age is {}". format(name,age))
+python 3.6
+print(f"hello {} your age is {} ". format(name,age))
+<h3>Center Method.py</h3>
+name = "harshit"
+#*harshit* ,9 or **harshit**, 11
+print(name.center(9,"*"))
+print(name.center()11,"*"))
+print(name.center(8,"*"))
+# enter name throu keyboard and print 4 star left and right.
+name = input("Enter your name :- ")
+print (name.center(len(name)+8, "*"))
+<h1>calculater.py</h1>
+# mathmatice expracion ( + , - , * , / ,, % )
+print (2 + 2)
+print (2 - 1)
+print (2 * 2)
+print (2 / 4)
+print (2 % 4)
+<h1>int.py</h1>
+x = int(input("Enter your First Number :- " ))
+y = int(input("Enter your second Number :-" ))
+total = x +y
+print (" total is = "str(total))
+<h1>find.py</h1>
+# we use find methrod to know positon of character in any string .
+
+string = "is she is beautiful and she is good dancer"
+print(string.find("is"))
+
+print(string.find("is", 1))
+# if we have not idia about position then
+a =" she is beautifuland she is good dancer"
+is_pos1 = a.find("is")
+is_pos2 = a.find("is" ,is_pos1 +1)
+print (is_pos2)
+<h2><a name= "12"></a>if.py</h2>
+# syntex
+# if condition
+# if condition is true then this code will execute
+# code
+# after if condition we need space with help of tab
+age = input("enter your age")
+age = int(age)
+if age >= 14
+	print ("you are above 14"
+<h1>if-else.py</h1>
+age = input("enter your age "
+age = int(age)
+if age >= 14
+	print("you are above 14")
+else
+	print("sorry , you can't play")
+<h1>if-else-else.py</h1>
+# show ticket pricing
+# 1 to 3 (free)
+# 4 to 10 (150)
+#11 to 60 (250)
+# about 60 (200)
+age = input("please input your age ")
+age = int(age)
+
+if 0 <= age <=3:
+	print("ticket Prise : free")
+elif 3<= age <= 10:
+	print("ticket price :150")
+elif 10<= age <= 60:
+	print("ticket price :250")
+else:
+	print("ticket price : 200")
+<h1>Nested-if-else.py</h1>
+winning_number =27
+user_input + input("guess a number b/w 1 and 100 :")
+user_input = int(user_input)
+if user_input == winning _number:
+	print("you win!!!")
+else:
+	if user_input <= winning_number  "  { <= replace < }
+	print  (" too low ")
+	else:
+		print(" too high")
+<h2><a name= "13"></a>and,or.py</h2>
+# check two condition at time
+# and
+name = 'abc'
+age = 19
+if name == 'abc' and age == 19
+	print("condition true")
+else:
+	print("condition false")
+#or
+name = 'abc'
+age = 19
+if name == 'abcd' or age==19:
+	print("condition True")
+else:
+	print("condition False")
+<h1>in-keyword.py</h1>
+name = "harshit"
+# in keyword
+# if with in
+if 'h' in name :
+	print ("h is present in name")
+else:
+	print("not preasent")
+<h2><a name= "14"></a>while Loop</h2>
+i =1
+while i <= 10:
+	print("hello world")
+	i = i + 1
+# python 3.6 __________
+i =1
+while j <= 10;
+	print(f"hello world {j}")
+	j =j +1
+---------------------------
+print 1+2+3+4+5+6+7+8+9+10 =??
+# total =0
+#i = 1
+#while i <+ 10:
+#	total = total +1
+#	i = i +1
+#print(total)
+--------------------------
+n = input("enter a number")
+n = int(n)
+a = 1
+while a <= n:
+	total += a
+	a += 1
+print(total)
+---------------------------
+number =input ("enter a number")
+total =0
+i = 0
+while i <= len(number)                   # ( <= replace < )
+	total += int(number[i])
+	i += 1
+print(total)
+#output enter 1111 ger 4
+<h1>infinite-loop.py</h1>
+infinite loop run two time first by mistek and second we run
+i = 0 
+while i<=10
+	print("hello world")
+we are not using i += 1 that why it run infinite time
+2 . while true :
+	print("hello world")
+for stop Ctrl+C
+<h1>for loop</h1>
+# for loop with range function
+for i in range(10);
+	print("hello world")
+or
+for i in range(1,11);
+	print(f"hello world {i}")
+## sum of 1 to 10 (1+2+3+4+5+6+7+8+9+10=??)##
+total -0
+for i in range(1,11);
+	total += i
+print(total)
+or
+n = int(input("enter number :"))
+or
+total = 0
+num = input ("enter a number:")
+for i in range(),len(num)):
+	total += int(num[i])
+print(total)
+##ask user name and count each character###########
+name = input("enter your name:")
+temp + ""
+for i in rang(len(name))
+	if name[i] not in temp:
+		print(f"{naame[i]}:{name.count(name[1]}")
+		temp += name[i]
+<h1>Break and continue keyword</h1>
+for i in range(1,11):
+	if i ==5;
+		break
+	print(i)
+##continu print 1 to 10 but not 5##
+for i in range(1,11);
+	if i == 5:
+		continue
+	print(i)
+<h1>For loop and string</h1>
+name = "ajeet"
+for i in num:
+	print(i)
+------------------------------
+num = input("enter a number:")
+total = 0
+for i in num
+	total += int(i)
+	print(total)
+<h2><a name= "15"></a>Functions</h2>
+dif add_two(num1,num2):
+	return num1 + num2
+a = int(input("enter first number : "))
+b = int(input("enter second number :"))
+total = add_two(a,b)
+print(total)
+*** for string****
+first_name = input("type first name ")
+last_name +input("type last name")
+_____________print vs return in function --------
+dif add_three(a,b,c);
+	return a+b+c
+print(add_three(5,5,5))
+or
+def add_three(a,b,c):
+	print(a+b+c)
+Both program is right but use always return 
+________________________________________________
+## Functions Practice
+1 :-
+def last_char(name)
+	return name[-1]
+print(last_char("harshit vashisth"))
+2 : -
+def odd_even(num):
+	if num%2 == 0;
+		return "even"
+	else:
+		return "odd"
+print(odd_even(10)
+	or
+odd_even(num)
+	if num%2 == 0:
+		return "even"
+	return "odd"
+print(odd_even(10))	
+	OR
+def is_even(num):	
+	if num%2 == 0
+		return True
+	return False
+print(is_even(10))
+3 : -
+without passing paramiter
+def song():
+	return "happy birthday song"
+print(song())
+4 :-
+def greatest(a,b,c);
+	if a>b and a>b
+		return a
+	elif b>a and b>c:
+		return b
+	else:
+		return c
+print(greatest(100,40,30))
+<pre>
+<h2><a name= "sql1"></a>Create DB</h2><pre>
+create  database  ******(db_name);
+<h2>Enter in DB </h2>
+use  (****)database-name;
+drop database *****(db_name);
+<pre>
+<h2><a name= "sql2"></a>Table</h2><pre>
+show  tables;                # print list of table
+<h2>Create Table [ tb = New Table ] </h2>
+create table tb(id int(11)  unsigned auto_increment primary key not null, username varchar(25) not null, password varchar (25) not null, email varchar(40) not null);
+
+show tables;
+ 
+describe tb(table name);
+insert into tb( username,password,email)
+values('Ram','12345','abc@gmail.com);
+
+insert into tb( username,password,email)
+values('kamal','12345','kamal@gmail.com);<pre>
+<h2><a name= "sql3"></a>Print from Table ( use select) </h2><pre>
+select  * from tb;                               # show all data in tb table
+select  username  from tb;                       #  show list of username in tb table
+select * from tb  where  id =1;                   
+select * from tb where user_name 'kamal';
+<pre>
+<h2><a name= "sql4"></a>update</h2><pre>
+
+change password from single user in tb table.
+update tb
+set password = "****"
+where username = "kamal";
+
+Change all password in same
+
+update tb
+set password = 0;
+<pre>
+<h2><a name= "sql5"></a>Delete</h2><pre>
+
+Delete Row
+
+delete from tb where username = 'kamal';
+
+Delete one then more row
+
+delete from user ehere username in9'ram',kamal');
+
+Delete column
+
+alter table tb drop column  username;
+
+<h2>Add</h2><pre>
+add new column
+
+alter table tb add column sex char(1);
+<pre>
+<h2><a name= "sql6"></a>MySql command</h2><pre>
+
+show processlist;
+
+flush query cache;
+
+########## create DB & User-name & password ##################
+
+create database New_Dbname;
+grant all on dbname .* to 'username'@'localhost' identified by 'password';
+grant all on dbname .* to 'username'@'%' identified by 'password';
+flush privileges;
+************************db-backup*******************************************
+
+mysqldump -u wpindiauser -h compare-infobase-db-new.cbztciobxkoh.ap-southeast-1.rds.amazonaws.com -p wpindia > my-india.sql
+<pre>
+<h2><a name= "linux1"></a>Boot Process</h2><pre>
+  BIOS         KERNAL
+  MBR          INIT
+  GRUB         Run Lable
+
+<h2>BIOS</h2> 
+BIOS load & executes MBR Boot Loder.
+ Search Load and executes boot loader program Disk_Drive,SD_card,cd/Dvd_rom,Hard_drive .
+you can change the disk drive wene BIOS start like CD or Hard Drive tipicialy is F-12 .
+it depand on the system . the BIOS give control the boot loader program ones it boot loader 
+in the memory .
+<h2>MBR</h2>  
+stands for master boot record it is located in first sector of bootable disk usealy that /dev/hda or /dev/sda
+it is less then 512 bytes in size it has three part.
+  Primary boot loader              Partition table             MBR(Valiation Check)
+    446 Byts                         64 byts                      2 bytes
+<h3> Boot Loader   a boot loader is small program stored in the MBR that help to load an operating system in memory
+GRUB , LILO is also one boot loader in linux.</h3> 
+<h2>GRUB</h2> 
+Stands for grond unified boot loader. if you have kernal image you can select which can boot.
+it display the splase screen and wate for few secand if nothing is enter it loads the 2 kernal image 
+as spacifi in the gub confgrasion file . GRUB has the knowledge of file system. configuration file /boot/grub/grub.conf
+               Kernal
+     GRUB         
+               Initrd
+Grub display list of operating system present in the system.
+<h2>Kernal</h2>
+Mount root file system as spasifide in the GRUB configuration file( /boot/Grub/Grub.conf ) .
+The kernal executes init program that locket in the executes init program that locket in the /sbin/init folder
+( init program is the executed in the system  ). you can varify PS -ef | grep init
+Kernal Load the file system in the insiad program.
+<h2>INIT</h2>
+Decides the run leable [ etc/inittab ]
+<h2>Run Lable</h2>  
+Run Lable desid insial program how bin loded in the program .
+Run            Mode                         Action
+0              Holt                       shutdown
+1              single-user mode           does not configer Network interface
+2              Multi-user mode            without network
+3              Multi-user with network    start system normally
+4              Undefined                  not Used
+5              X11                        Grafec Mode
+6              Reboot                     Reboot the System
+<pre>
+<h2><a name= "linux2"></a>Boot Partition</h2><pre>
+The boot directory containg the kernal and ram disk image as well as the bootloader
+configuration file and boot loader stagees.
+It's not required for normal Systen operation but only during boot and Kernal upgratedes.
+ /boot     200 MB
+ It requires only about 100MB ,But if multipl Kernal /boot images are likely to be in use 200 or 300 is better choice.
+<pre>
+<h2><a name= "linux3"></a>softlink</h2><pre>
+We create softlink for both Diractry &  File.
+Softlink have different inod Number to main file.
+
+ln  -s  filename  newsoftlink file
+
+<h2>Hard Link</h2>
+ Create only for file Hard link have same inod number.
+
+ln  filename  new_hard_link_file
+<pre>
+<h2><a name= "linux4"></a>ls</h2><pre>
+ls             display a list of file and directorys
+ls  -l         display permission , username ,group_name,month,date,time for file
+ls  -lh        display the size of file.
+ls  -lhs       short file size
+ls  -a         show hidden file
+ls  -d*/       dispaly directory entries only
+ls -n          print UID and GID
+ls ~           List your home directory
+<h2><a name= "linux5"></a>vim</h2><pre>
+use for edit file
+copy line :-
+go ecp mode   yy copy single line
+copy 4 line   4yy
+
+for past  :- P
+
+delete Line   :-    1 line    DD
+                    5 line    5DD
+Number Set    :-    ecp
+                   :set  number:
+save file     :-    wq!
+                    q!   without saving quit
+save file with path 
+               :-  wq: /root/Desktop
+Jump to end of file 
+                :-  Press ESc and type G (always in captil)
+Jump back to beginning of file
+                :-   gg
+jump to line number 700 
+               :-  700G 
+<pre>  
+<h2><a name= "linux6"></a>zip</h2><pre>
+<h3>Zip</h3>
+create an srchive compressed in zip
+    zip   filename    zipfile
+Compress in zip serveral file and directory on same time.
+   zip -r file1.zip    file1  file2  dir1
+Decompress a file colled file1
+   Unzip  file1
+<h3>Gzip</h3>
+    Compress a file called 'file'
+    gzip    file1
+    compress with maximum compression
+    gzip  -9 file1
+<h3>RAR Archive</h3>
+ first need to install RAR with help of yum server.
+ Compress 'file1','file2' and 'dir' simulaneasly
+   rara  file1.rar    file1  file2  dir1
+Decompress rar archive
+   rarx  file1.rar
+   or 
+   unrarx  file1.rar
+<h3>bzip2</h3>
+     bzip2    file1      ( compress a file colled 'file1')
+     bunzip2  file1.bz2  ( Decompress a file colled file1.bz2)
+<h3>TAR</h3> 
+    tar command have some swich
+   C       X        T       V            F           G      J
+   |       |        |       |            |           |      |
+create   Explor    Test    Vorbirs     File_Name    g.zip   Vgip2
+Example :-
+
+Back up etc folder
+ tar  cvjf    /tmp/etc.tar.bz2   /etc
+Explor File
+  tar   -xvjf    etc.tar.bz2  .
+<pre> 
+<h2><a name= "linux7"></a>Shell</h2><pre>
+Computer understand the language of ziro and one Known as binary language
+ The shell accept human readable command and translates them into binary language 
+that why kernal can read and process.
+The shell is not part of system kernal but uses the syseem kernal to execute programs.
+Serveal shell are available for Linux. 
+<h3>BASH(Bourn-Again -shell)</h3>
+ Most common shell in Linux .it is open source.
+<h3>CSH( C shell)</h3>
+The c_shell syntax and usage are very similar to the c programmming language.
+<h3>KSH(Korh shell)</h3>
+
+<h3>TCSH</h3>
+Each shell dose the same job but each understand different command syntex and provid different bilt in functions.
+<pre>                           
+<h2><a name= "linux8"></a>File System in Linux    :-      EXT4 [6.0] , XFS [ linux 7.0]</h2><pre>
+/bin    local user command execution
+/boot   it holds boot loder (grub) kernal & booting File
+/dev    it hold all the device file(LAN,Card,etc)
+/home   Local user home Dir
+/lib
+/media  Default mount point for removed storage
+/mnt    Temporary mount point ,such as CD Rom ,USB,Disk
+/opt    All thired party Application
+/Sbin   Root's(super_User) command execution
+/srv
+/tmp    it can hold file for any user
+/usr    application program
+/var    All server Database
+/root   root's home dir
+/proc   process file
+/etc    all configuration file & it's sub directory
+
+<h3>Linux  (type of file)</h3>
+ | 
+ | ---- Diretory       -------d
+ |
+ |----- Regular File   ------Creater by user
+ |
+ |----- Link File      ------l
+ |_____Block File      ------B
+ |_____Chareter file   ------C
+
+<pre> 
+<h2><a name= "linux9"></a>rpm ( Package Manager )</h2><pre>  
+To find the package nano installed or not we use rpm command with 
+the option -Q for query & -a stands for all the installed package
+
+# rpm  -qa | grep -i nano
+or
+rpm -qa | grep -i nano
+<h3>Install package using rpm?( *.rpm)</h3>
+-i( install)
+-v (verbose or display additionl information)
+-h (print hash mark during package installation )
+ 
+# rpm  -ivh peazip-1.11.1.el6.rf.rpm
+if upgrading a package from earlier version
+-u switch should be used option -v and
+-h fallows to make sure
+<h3> Remove Packages</h3>
+# rpm -ev  postfix  -2.10.1-6e17.x86_64
+<h3> If you have installed a package (say httpd) and how you want to see
+all the files and directory installed and created by the about package . what will you do?</h3>
+   option -l  (list all the file)
+          -q  (is for query)
+   # rpm  -ql httpd
+<h3> Get deatele information about on install package, memory information like version, Release, install data , size</h3>
+  # rpm -qi httpd
+<pre>
+<h2><a name= "linux10"></a>GREP Command</h2><pre> 
+#  grep 'word'  file_name
+#  grep 'word'  file1  file2  file 3 
+#  cat /root/desktop/abc | grep 'ajeet'
+<h3>Search /etc/password file for anu user </h3>
+# grep -i "anu" /etc/passwd
+<h3>Count line wene words has been matched </h3>
+# grep -c "ajeet" /root/Desktop/abc
+<h3>pass the -n option to precede each line of output which the number of the line in the line in the text file </h3>
+#grep -n 'root' /etc/passwd
+<h3>You can force grep to display output in color  </h3> 
+#grep  --color 'root'  /etc/passwd </pre> 
+<h2><a name= "shell1"></a>load.sh </h2>
+<pre>#!/bin/bash                                                                                                                                                         
+#                                                                                                                                                                   
+# Script to notify admin user if Linux load crossed certain limit                                                                                                   
+# It will send an email notification to admin.                                                                                                                      
+
+# Set up limit below
+NOTIFY="10"         
+
+# admin user email id
+EMAIL="servers@infobase.in"
+EMAIL1="deepak@infobase.in"
+# Subject for email        
+SUBJECT="Alert $(hostname) load average"
+
+# -----------------------------------------------------------------
+
+# Os Specifc tweaks do not change anything below ;)
+OS="$(uname)"                                      
+TRUE="1"                                           
+if [ "$OS" == "FreeBSD" ]; then                    
+        TEMPFILE="$(mktemp /tmp/$(basename $0).tmp.XXX)"
+        FTEXT='load averages:'
+elif [ "$OS" == "Linux" ]; then
+        TEMPFILE="$(mktemp)"
+        FTEXT='load average:'
+fi
+
+# get first 5 min load
+F5M="$(uptime | awk -F "$FTEXT" '{ print $2 }' | cut -d, -f1)"
+# 10 min
+F10M="$(uptime | awk -F "$FTEXT" '{ print $2 }' | cut -d, -f2)"
+# 15 min
+F15M="$(uptime | awk -F "$FTEXT" '{ print $2 }' | cut -d, -f3)"
+
+# mail message
+# keep it short coz we may send it to page or as an short message (SMS)
+echo "Critical Load average Crossed allowed limit $NOTIFY." >> $TEMPFILE
+echo "Hostname: $(hostname)" >> $TEMPFILE
+echo "Local Date & Time : $(date)" >> $TEMPFILE
+echo "Last 5 minutes load : $F5M" >> $TEMPFILE
+# Look if it crossed limit
+# compare it with last 15 min load average
+RESULT=$(echo "$F15M > $NOTIFY" | bc)
+
+# if so send an email
+if [ "$RESULT" == "$TRUE" ]; then
+        mail -s "$SUBJECT" "$EMAIL" < $TEMPFILE
+        mail -s "$SUBJECT" "$EMAIL1" < $TEMPFILE
+#lynx http://sl23.in/smsl.php?sms=919910005199,919871399012 </dev/null
+fi
+
+# remove file
+rm -f $TEMPFILE
+
+
+
+**********************************************</pre> 
+<h2><a name= "shell2"></a>indiaedu.sh </h2>
+<pre>
+URL="http://www.indiaedu.com/"
+CHECK=$(wget --timeout=22 --tries=1 -qO - $URL )
+if [[ ${#CHECK} > 0 ]]; then
+        echo "Server up!"
+
+else
+mutt -s "Alert: indiaedu.com is not responding on (L13)" servers@infobase.in </dev/null
+
+        echo "Server Down!"
+fi
+**********************************************</pre>         
+<h2><a name= "shell3"></a>iptablescheck.sh</h2>
+<pre>
+#!/bin/bash
+#
+#Check if firewall is up
+/sbin/iptables -L -n | grep -m 1 103.251.61.82
+
+if [ $? -eq 0 ];
+then
+echo
+else
+mutt -s "Firewall Status : Down on `hostname` " deepak@infobase.in </dev/null
+mutt -s "Firewall Status : Down on `hostname` " servers@infobase.in </dev/null
+fi
+**********************************************</pre> 
+<h2><a name= "shell4"></a>frozen-mail.sh [frozen-mail remove] </h2>
+<pre>
+     
+
+!/bin/bash
+exiqgrep -z -i | xargs exim -Mrm &
+
+**********************************************</pre>
+<h2><a name= "shell5"></a>slogin.sh </h2>
+<pre>
+
+konsole -p tabtitle=L  --new-tab -e sshpass
+konsole -p tabtitle=Mail --new-tab -e sshpass -p 'LJ(UKNgjkjb' ssh root@209.126.124.6
+konsole -p tabtitle=L13  --new-tab -e sshpass -p 'nusi09j09u#' ssh support@69.64.35.130
+konsole -p tabtitle=L19  --new-tab -e sshpass -p 'jy78jih98' ssh support@173.224.124.249
+konsole -p tabtitle=L19N --new-tab -e sshpass -p 'J((HIG^&Rf6' ssh root@209.126.127.21
+konsole -p tabtitle=L29  --new-tab -e sshpass -p 'IO*(YGRGJGui' ssh root@209.126.105.246
+konsole -p tabtitle=L30  --new-tab -e sshpass -p 'jh8OKO9$#' ssh support@173.224.119.136
+#konsole -p tabtitle=l20N  --new-tab -e sshpass -p 'Hyejs672y#*aQW' ssh root@209.126.119.14
+
+
+
+
+#konsole -p tabtitle=L  --new-tab -e sshpass -p 'cilredhat' ssh cilredhat@10.10.10.7
+#konsole -p tabtitle=l20live --new-tab -e sshpass -p'G*&^T*HG*(9hg67j' ssh support@l20live
+#konsole -p tabtitle=l24live --new-tab -e sshpass -p'g*&TIG89#%^%' ssh support@l24live
+#konsole -p tabtitle=l25live --new-tab -e sshpass -p'HkjUT%$87=$%' ssh support@l25live
+#konsole -p tabtitle=l26live --new-tab -e sshpass -p'SxBQ7.^T=sH{' ssh support@207.150.195.49
+#konsole -p tabtitle=l27live --new-tab -e sshpass -p'JHui=VT7890-0-' ssh support@l27live
+#konsole -p tabtitle=l28live --new-tab -e sshpass -p'HYf^&5rgf&T*&' ssh support@l28live
+#konsole -p tabtitle=l31live  --new-tab -e sshpass -p'TvVlA$^897' ssh support@l31live
+#konsole -p tabtitle=l31New  --new-tab -e sshpass -p'Uhit*TfF&*Y' ssh root@182.18.151.43
+
+**********************************************</pre> 
+<h2><a name= "shell6"></a>Total.sh </h2>
+<pre>
+#Script to count no of html pages in a dir
+
+#!/bin/bash
+echo "enter your dir name:"
+read mydir
+cd /home/$mydir/public_html
+pwd
+html=`find . -name "*.html" | wc -l`
+echo " no of html pages:- $html"
+htm=`find . -name "*.htm" | wc -l`
+echo " no of htm pages:- $htm"
+jsp=`find . -name "*.jsp" | wc -l`
+echo " no of jsp pages:- $jsp"
+php=`find . -name "*.php" | wc -l`
+echo " no of php pages:- $php"
+total=`expr $html + $htm + $jsp + $php`
+echo " Total no of pages:-$total"
+
+
+
+**********************************************</pre>        
+
+</div>    
+  <h2><a name= "shell7"></a> How do I start applications automatically on login? </h2>
+<pre>
+cd /home/username/.config/
+mkdir autostart
+cd autostart/
+vim bash.desktop
+
+[Desktop Entry]
+Type=Application
+Exec=bash -x /home/username/spark/spark
+Hidden=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=spark
+Name=spark
+Comment[en_US]=
+Comment=
+
+wq!
+******************************************</pre>        
+ <h2><a name= "shell8"></a>URL-listing.sh?</h2>
+<pre>
+#!/bin/bash
+
+echo -n  "Provide complete URL[e.g  http://www.example.com & hit Enter]: "
+read name
+echo "Plz enter the username"
+read user;
+echo "you entered $user"
+
+>/usr/local/scripts/testdir/htmlist.txt
+cd /home/${user}/www/;
+find .  -iname "*.html" > /usr/local/scripts/testdir/htmlist.txt
+find .  -iname "*.htm" >> /usr/local/scripts/testdir/htmlist.txt
+find .  -iname "*.php" >> /usr/local/scripts/testdir/htmlist.txt
+>/usr/local/scripts/testdir/url_list.txt
+sed 's/^.//g'  /usr/local/scripts/testdir/htmlist.txt > /usr/local/scripts/testdir/urlnew_list.txt
+>/usr/local/scripts/testdir/url.txt
+awk -v i="$name" '{print i$1}' /usr/local/scripts/testdir/url_list.txt   > /usr/local/scripts/testdir/url.txt
+echo -n "Enter the mail Id to whom URL list is to be sent:"
+read mailid
+mutt -s "urllist" $mailid -a /usr/local/scripts/testdir/url.txt </dev/null
+echo "URL list  sent successfully to $mailid"
+
+******************************************</pre>
+<h2><a name= "git1"></a>clint-setup for github</h2>
+<pre>
+ git config --global user.email 'abc@gmail.com'
+git config --global user.name 'abc'
+git init
+
+echo "# doc" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/ajeet1311990/doc.git
+git push -u origin master
+user name ajeet1311990
+
+
+******************************************</pre>
+
+
+</div>
+</div> 
+----------------------------------------------------------------   
+<h2><a name= "shell8"></a>URL-listing.sh?</h2>
+<pre>
+  33333333333
+       333333333333
+******************************************</pre>
+---------------------------------------------------------------------
+
+</div>    
+
+</div>
+
+</body>
+
+</html>
