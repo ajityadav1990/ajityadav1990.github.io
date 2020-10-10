@@ -2153,6 +2153,134 @@ all the files and directory installed and created by the about package . what wi
 #grep -n 'root' /etc/passwd
 <h3>You can force grep to display output in color  </h3> 
 #grep  --color 'root'  /etc/passwd </pre> 
+	<h2><a name= "linux17"></a>ACL</h2><pre>
+ACL-->
+if you want to give some spacial permissions to particular user or group  on any particuler directory use ACL.
+setfacl  & getfacl
+
+List of commands for setting up ACL :
+
+1) To add permission for user
+setfacl -m "u:user:permissions" /path/to/file
+
+2) To add permissions for a group
+setfacl -m "g:group:permissions" /path/to/file 
+
+3) To allow all files or directories to inherit ACL entries from the directory it is within
+setfacl -dm "entry" /path/to/dir
+
+4) To remove a specific entry
+setfacl -x "entry" /path/to/file
+
+5) To remove all entries
+setfacl -b path/to/file
+------
+getfacl test/declarations.h (use only for check permision)
+Output:
+
+# file: test/declarations.h
+# owner: mandeep
+# group: mandeep
+user::rw-
+group::rw-
+other::r--</pre>
+<h2><a name= "linux18"></a>sed</h2><pre>
+
+sed command is use for Viewing a range of lines , entire file except a given range , Replacing words or character ,
+
+# sed -n '5,10p' myfile.txt
+# sed '20,35d' myfile.txt
+# sed 's/version/story/g' myfile.txt
+# sed '30,40 s/version/story/g' myfile.txt</pre>
+<h2><a name= "linux19"></a>Disk Partitisonin Linux</h2><pre>
+Disk Partitison in Linux----------------------------------------------------
+fdisk command ->  with the help of fdisk command we can view, create , resize, delete, change ,copy and move partitions on the harddisk.
+1) fdisk -l  ( view all partitions in linux )
+2) fdisk  -l /dev/sda 			( view spacific disk partitios )
+----Delete partition in linux
+fdisk /dev/sda
+d
+5  [ Disk partition number ]
+---- Create new partition
+fdisk /dev/sda
+	n	new
+	e	extanded partition
+	p	primary partitions
+skip first cylenders
+Last cylender : +20 G -capital
+	P	print partition list
+	w	partition table hasbeen update
+	port probe	do not need to restart system after creating partition
+Formate partition --
+Mkfs.ext4	/dev/sda1	( formate partition )</pre>
+<h2><a name= "linux21"></a>mount</h2><pre>
+Mount Partition ---
+	mkdir	/data		( create Directory for mount point )
+	mount -t ext4 /dev/sda1 /data
+	mount			( Print list of all mounted partition )
+	umount	/data 		( unmount Data )</pre>
+<h2><a name= "linux22"></a>umask</h2><pre>
+
+Umask  --->
+       umask is a command that determies the seting  of a mask that controls which file permissions set for file and directory whe they are created. 
+
+SUID      ->  Give spacial permission to USER.
+SGID      ->  Give spacial permission to GROUP.
+Stick Bit ->  Give permission  that user can read and write but cun't delete file .</pre>
+<h2><a name= "linux23"></a>YUM</h2><pre>
+---Yum Server ------------------
+YUM :-
+  yum is open-source command line package-manager utilit for Linux operating system for rpm packages.
+  Config file  /etc/yu.repo.d
+
+Advantages ->  automatic resolve software dependencies.
+#  yum install packages name
+#  yum update 
+# yum remove packages name 
+
+setup 
+
+install VSFTPD
+cd /var/ftp/pub
+cp -rv /media/source  /var/ftp/pub
+cd /etc/yum.repo.d
+vim server.repo
+[Server]
+	file=ajeet
+	baseurl=file:///var/ftp/pub/RH---
+	gpgcheck=0
+:wq!
+</pre>
+<h2><a name= "linux24"></a>rpm</h2><pre>
+---------rpm------------------------------------
+# rpm -qa   package name		( check packeage install or not	)
+# rpm -ivh  package name 		( install spacific package )
+# rpm -ev   packge name			( remove packages)
+# rpm -Uvh  package name		( upgrade existig packages )
+# rpm -ql   package name		( Display list of installed software )</pre>
+<h2><a name= "linux25"></a>DNS</h2><pre>
+--DNS----------------------------------
+
+	DNS is service which is use for chang  IP address to host and host to IP address
+	Port Number 53
+	config file ->  /etc/named.conf
+			/etc/named.rfc1912.zone
+	Zone  DNS have two type of Zone
+		reverce.zone
+<h2><a name= "linux26"></a>DHCP</h2><pre>		forword.zone</pre>
+--DHCP------
+	DHCP is use for auto assin IP rang in network</pre>
+<h2><a name= "linux27"></a>SWAP</h2><pre>
+--SWAP MEMORY --
+
+swap is virtual memory use as RAM memory</pre>
+<h2><a name= "linux28"></a>Heap Memory</h2><pre>
+----Heap Memory  --------
+
+	For applications we can set memory space for application  and application run only given memory.
+	if application getting any errar then applicatinon only hang  not os.
+	we set heap memory in base profile.</pre>
+-- 	
 <h2><a name= "shell1"></a>load.sh </h2>
 <pre>#!/bin/bash                                                                                                                                                         
 #                                                                                                                                                                   
