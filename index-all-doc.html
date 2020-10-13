@@ -620,6 +620,7 @@ function w3_getStyleValue(elmnt,style) {
 <a href="#linux17">ACL</a>
 <a href="#linux18">sed</a>
 <a href="#linux19">Disk Partitison in Linux</a>
+<a href="#linux29">LVM</a>	    
 <a href="#linux20">Password Police( change Limition)</a>
 <a href="#linux21">mount</a>
 <a href="#linux22">umask</a>
@@ -2218,7 +2219,84 @@ Mount Partition ---
 	mkdir	/data		( create Directory for mount point )
 	mount -t ext4 /dev/sda1 /data
 	mount			( Print list of all mounted partition )
-	umount	/data 		( unmount Data )</pre>
+	umount	/data 		( unmount Data )
+</pre><h2><a name= "linux29"></a>L V M</h2><pre>L V M   : - Logical volume manager
+ 
+
+
+     PV      PV     PV
+     __      __     ___
+    |  |    |  |   |   |
+    |5 |    |5 |   | 5 |
+    |G |    |G |   | G |
+    |__|    |__|   |___|
+     |________|______|
+              |
+    __________|______________
+   |        VG = 15         |
+   |________________________|
+            |
+            |                
+            |
+   _________|________________
+  | LV  |                    |
+  |_3G__|____________________|
+
+
+pvdisplay , vgdisplay,lvdisplay
+
+create row partision		
+pvcreate----
+pvcreate   /dev/sda3  /dev/sda2
+
+vgcreate---
+
+vgcreate   /dev/myvg  /dev/sda3  /dev/sda2
+
+lvcreate----
+                  new lv name
+                     |
+lvcreate  --name   test1    -size  40G  /dev/mvvg
+
+format new LV
+
+mkfs.ext4    /dev/myvg/test1
+
+
+mount lv-----
+
+
+mkdir  /data
+mount  /dev/myvg/test1   /data
+
+lvdisplay
+
+Reduce LV size : -
+
+lvreduce     --size  -5G  /dev/myvg/test1
+
+lvdisplay
+vgdisplay
+
+Extand VG ----
+              For this we need to create a PV  Then
+
+vgextend     /dev/myvg      /dev/sda1
+               |              |
+            VG path         New PV Path
+
+Extand Lv
+
+lvextend   ---size  +15G   /dev/myvg/test1
+
+
+Remove------
+
+lvremove   /dev/myvggroup/test1
+vgremove   /dev/myvggroup
+pvremove   /dev/sda1</pre>
+
+		
 <h2><a name= "linux22"></a>umask</h2><pre>
 
 Umask  --->
