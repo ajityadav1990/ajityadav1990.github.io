@@ -1,0 +1,72 @@
+--- # if and else  example for  found file or directory --------------------
+import os
+fname=input(" Enter file")
+if os.path.exists(fname):
+    print("exist !!!")
+else:
+    print("not exist!!!")
+
+
+# python test.py         [ search file in present directory]
+Enter file : abc.txt
+exit
+# python test.py         [ search file in different directory ]
+Enter file : /users/admin/Documents/xyz.txt
+
+---# nested if and else  example for  found file exit  or something else ----------
+
+#!/usr/local/bin/python3.9
+import os
+fname=input(" Enter file")
+if os.path.exists(fname):
+    if os.path.isfile(fname):
+     print("exist !!!")
+    else:
+     print("something else")
+else:
+    print("not exit ")
+-- if --else--elif---------------
+
+example :- if custmor by  something more the 5000 MRP on sunday get 10% descount. 
+
+day=input("enter day :").lower()
+amount=int(input("enter amount :"))
+
+if day == "sunday" and  amount>=5000:
+    dis=(amount*10)/100
+    amount=amount-dis
+    print("after 10% descount final price will be :",amount)
+else:
+    print("without discount final price will be :" ,amount)
+
+2. if custmor by something more the 5000 MRP on sunday get 10% descount and if bye within 4000 to 5000 get 5% descount .
+
+day=input("enter day :").lower()
+amount=int(input("enter amount :"))
+
+if day == "sunday" and  amount>=5000:
+    dis=(amount*10)/100
+    amount=amount-dis
+    print("after 10% descount final price will be :",amount)
+elif day == "sunday" and amount>=4000:
+    dis=(amount*5)/100
+    amount=amount-dis
+    print("after 5% discount final price will be :",amount)
+else:
+    print("without discount final price will be :" ,amount)
+--- for output  creating date , modififi date ,and space  of some directory --------------
+
+
+import os
+from datetime import datetime,timedelta
+
+os.chdir("/home/ec2-user/")
+data=os.listdir(".")
+dt=datetime.now()
+
+for file in data:
+    if os.path.isfile(file):
+        size=os.path.getsize(file)//1024
+        t=os.path.getctime(file)
+        a=datetime.fromtimestamp(t)
+        print(file,"=>",size,";;;",a)

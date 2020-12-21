@@ -1,0 +1,54 @@
+
+Dictionary  in python---curly {} ------------------------------
+
+Python dictionary is an unordered collection of items. Each item of a dictionary has a key/value pair.
+#dict..  : collection of key and value , we assain key in dictionary
+#dict... :  { K:v,k:v,k:v }  
+#key     :   object,home,hetro,immutable,unique ( if have dublecate key always print last key value )
+#dict    : mutable
+
+
+server1=['192.168.0.1',22,'root','redhat']
+d={'host':'192.160.0.1','port':22,"user":"root","password":redhat"}    --------  is dictionary
+#print(d['user'])                   ----------------print
+#print(d.get('host',"key not exist"))        if key abailable it it print value else print None or what every we input .
+ 
+add  
+print(d.setdefault('key','id.dsa'))           if key alrady in dictionary then nothing update  and if key is not in dictionary it add new
+print(d)
+
+
+when ever we apply loop directe on dictionary we get output  only key  not value  --
+example : 
+
+d={'host':'192.160.0.1','port':22,"user":"root","password":redhat"}
+d2={'host':'192.160.0.2','port':22,"key":"id.dsa"}
+
+for x in d() :
+	print(x)
+output :-  
+host
+port
+user
+root
+password
+------ For get value output 
+for x in d.items() :
+	print(x)
+output --
+
+host':'192.160.0.1
+port':22
+user":"root
+password":redhat
+
+
+# k=list(d.keys())                        ------- print list of all key but should be in list for chang something
+print(k)
+# v=list(d.valuse())                      ------- print list of all values but should be in list for chang something
+print(v)
+
+print(d.pop(host)                         ------- print spaciye key and value & delete also.
+print(d.popitem())                        -------print always  last key and value.
+d.update(d2)                              -------update 
+print(d)

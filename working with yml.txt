@@ -1,0 +1,29 @@
+---working with yaml file ---   Pars--  (yml to python other file)
+
+vim remove-user.yml
+
+- host: osreview
+
+  tasks:
+          -name: Remove user
+          user:
+                  name:tomcat
+                  state:absent
+:wq!
+-------------------------------------
+
+import yaml
+import pprint
+with open("/root/remove-user.yml","r") as f:
+    data=yaml.safe_load(f)
+
+pprint.pprint(data)
+----
+
+import yaml
+import pprint
+server_info=[{'hosts':'127.0.0.1',
+            'users':['user1','user2'],
+            'password':"redhat"}]
+with open("/root/server.yml","w") as f:
+    yaml.safe_dump(server_info,f)

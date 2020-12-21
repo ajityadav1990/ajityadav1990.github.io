@@ -1,0 +1,159 @@
+example  :- https://github.com/kry496/python-usermanagement/blob/master/user_management.py
+
+argument pass in python
+
+
+always print file name  as  first argument.
+always print argument in list formate .
+---
+import sys
+
+print(sys.argv) 
+-------------------------------------------
+Argparse
+
+What is it?
+Parser for command-line options, arguments and subcommands
+
+Why use it?
+
+The argparse module makes it easy to write user-friendly command-line interfaces. 
+
+----------------------------------------------
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("name")
+args = parser.parse_args()
+print(args.name)
+----
+output :-
+
+ when you run without args
+
+# python3.7 hello.py 
+usage: hello.py [-h] name
+hello.py: error: the following arguments are required: name
+
+when you pass args :
+
+# python3.7 hello.py Amit
+Amit
+
+
+ you can get help by using -h or --help
+
+# python3.7 hello.py -h
+usage: hello.py [-h] name
+
+positional arguments:
+  name
+
+optional arguments:
+  -h, --help  show this help message and exit
+----pass multiple argument ----------------------
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("name")
+parser.add_argument("age",type=int)
+args = parser.parse_args()  |_____________________________________default argument for type costing in int
+print(args.name)
+print(args.age)
+print(type(args.age))
+
+----Optisonal  argument -------------
+
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("name",help="help text for name")
+parser.add_argument("age",type=int,help="help text for age")
+parser.add_argument("-v","--verbose",action="store_true")
+                      |_______|______________|________________________________optisonal  argument ( user define name ) can be -v or --fullname
+args = parser.parse_args()                   |__________________________pre define for set value True if select optisonal argument 
+print(args.name)
+print(args.age)
+print(args.verbose)
+Example----------------------------------------
+
+#!/usr/local/bin/python3.9
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("name",help="help text for name")
+parser.add_argument("age",type=int,help="help text for age")
+parser.add_argument("-v","--verbose",action="store_true")
+args = parser.parse_args()
+if args.verbose:
+    print("name is :",args.name)
+    print("age is",args.age)
+else:
+    print(args.name,args.age)
+
+
+
+# python3 test.py amit  23 --verbose
+
+----example---------------
+#!/usr/local/bin/python3.9
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("name",help="help text for name")
+parser.add_argument("age",type=int,help="help text for age")
+parser.add_argument("-v","--verbose",type=int, choices=[0, 1, 2])
+args = parser.parse_args()
+if args.verbose == 1:
+    print("name is :",args.name)
+    print("age is",args.age)
+elif args.verbose == 2:
+    print(args.name,args.age)
+elif args.verbose == 0:
+    print("you select 0")
+
+output--
+# python3 test.py  amit 20 -v 1
+name is : amit
+age is 20
+
+# python3 test.py  amit 20 -v 2
+amit 20
+
+# python3 test.py  amit 20 -v 0
+
+----metaver && dest  --------
+
+#!/usr/local/bin/python3.9
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("name",metavar="USER-NAME",help="help text for name")
+parser.add_argument("age",type=int,help="help text for age")
+parser.add_argument("-v","--verbose",dest="x",type=int, choices=[0, 1, 2])
+args = parser.parse_args()             |_______________________________________________can use x in place of ( if args.verbose ==1: )---
+if args.x == 1:
+    print("name is :",args.name)
+    print("age is",args.age)
+elif args.x == 2:
+    print(args.name,args.age)
+elif args.x == 0:
+
+output------
+
+]# python3 test.py -h
+usage: test.py [-h] [-v {0,1,2}] USER-NAME age
+
+positional arguments:
+  USER-NAME             help text for name
+    |__________________________________________________________________metaver print USER_NAME in place of name
+  age                   help text for age
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v {0,1,2}, --verbose {0,1,2}
+
+#
+
+    print("you select 0")
+
+you select 0
+
+# python3 test.py amit  23 -v
+#python3 test.py amit  23 
+
+

@@ -1,0 +1,137 @@
+file handling :
+
+f=open("filename","mode")
+
+mode : txt
+mode : binary data( image,pdf,audio,video.bytedata)
+
+txt :
+
+if we not defani anymod file by defoult it open in read mode. 
+
+'r' or 'rt'  :    read : default : read text       (if file available then only read else not).
+'w' or 'wt'  :   write : if file exit then overwrite data & if file not exit it create new file. 
+'a' or 'at'  :   append : if file exit data will append in next line else it also create new file.
+'r+'or 'rt+' : read and write ;if file abailabe then it will read data else not.
+'w+' or 'wt+': write and read  if file abailable data trenk(old data delete) else create new file.
+'x' or 'xt'  : exclusis : if file exit error create and if file not exit create file with w mode .
+
+binary :
+
+rb
+wb
+ab
+rb+
+wb+
+xb
+
+--
+f=open("/root/file/abc.txt","w")
+print(f.name)
+print(f.mode)
+print(f.readable())
+print(f.writable())
+print(f.closed)
+f.close()
+print(f.closed)
+
+---
+f=open("/root/file/abc.txt","w")
+
+f.write("welcome to Kr")       data will be write in file but only in string not other formate.
+f.close()
+
+---
+f=open("/root/file/abc.txt","w")
+f.write("welcome to python\n")
+f.write("welcome to python class")
+
+f.close()
+
+--write list data in file
+
+lines=['\nline4\n','lie5\n','line6\n']
+f=open("/root/file/abc.txt","a")
+f.writelines(lines)
+f.close()
+
+
+--Read file --------
+
+f=open("/root/file/abc.txt","r")
+data=f.read()                        # Read data from file after current cursor position
+print(data)
+
+f.close()
+-----
+
+f=open("/root/file/abc.txt","r")
+data=f.read(5)                        # Read number of curecter data from fille
+print(data)
+
+f.close()
+---
+f=open("/root/file/abc.txt","r")
+data=f.readline()                        # Read single line form curent curser.
+print(data)
+
+f.close()
+---
+
+f=open("/root/file/abc.txt","r")
+data=f.readlines()                        # after current curcer Read all data but print in list formate
+print(data)
+
+f.close()
+
+---- for count lenth word and number from file .----
+f=open("/root/file/abc.txt","r")
+
+l=w=c=0
+
+for line in f:
+    l=l+1
+    w=w+len(line.split())
+    c=c+len(line)
+print(l,w,c)
+f.close()
+
+----
+print(f.tell())         -print  current curser position
+
+---
+
+f=open("/root/file/abc.txt","r")
+
+print(f.read())
+f.seek(0)            ----chang curcer position from current position
+print(f.read())
+f.close()
+--close file from with statment  automaticaly --------------
+if we open any file from     with statement    it automaticaly close file. 
+
+with open("/root/file/abc.txt","r") as f :
+    print(f.closed)
+print(f.closed)
+
+
+-binary example----
+
+with open("/users/admin/Documents/india.pg","rb") as f1
+	with open("/root/file/myimg.pg",'wb") as f2
+		f2.write(f1.read())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,277 @@
+OS module  : -
+
+
+import os
+cwd=os.getcwd()                    -print present working directory
+print(cwd)
+----------------------
+
+import os
+os.chdir("/home/ec2-user/")       -chang working directory
+cwd=os.getcwd()
+print(cwd)
+
+------------------
+import os
+os.chdir("/home/ec2-user/")       - Create directory ( but create one directory at one time
+os.mkdir('dir1')
+----------
+import os
+os.chdir("/home/ec2-user/")
+os.makedirs(r"python/newfile/temp")                           -make directory in tree structes
+---
+import os
+os.chdir("/root/file/")
+os.rmdir('aaa')                         #delete directory but if empoty
+------
+import os
+os.chdir("/root/file/")
+os.removedirs(r"python/newfile/tmps")                         #delete tree of directory but if empoty
+-------
+import os
+os.chdir("/root/file/")
+os.remove("abc.txt")                       # Remove file only
+-------
+
+import os
+os.chdir("/root/file/")
+data=os.listdir('.')                      # list
+print(data)
+-----
+os.chdir("/root/file/")
+st=os.stat('newfile.txt')            --print complite file details 
+
+print(st)
+
+---
+import os
+import time
+os.chdir("/root/file/")
+st=os.stat('newfile.txt')
+print(time.ctime(st.st_ctime))
+-----------
+
+import os
+import time
+os.chdir("/root/file/")                        
+for cwd,dirs,file in os.walk('.'):                               walk function use for print tree list of directory(print directory ,files ,subdirectory and files)
+    print("cwd :",cwd)
+    print("dirs :",dirs)
+    print("files :",file)
+
+
+---------
+import os
+
+os.chdir("/root/file/")
+for cwd,dirs,files in os.walk('.'):                           find all  .txt file from  directory and sub directory
+    for file in files:
+        if file.endswith('.txt'):
+         print(file)
+---
+
+
+import glob
+data=glob.glob("/root/file/**/*.txt",recursive=True)        find all  .txt file from  directory and sub directory    with glob module        
+for file in data:
+    print(file)
+
+or
+
+path=input(" Enter path : ")
+data=glob.glob("/root/file/**/*.txt",recursive=True)          enter  /root/file/**/*       
+for file in data:
+    print(file)
+
+---Remove directory force fully if have data  ---with-shutil--module-----
+
+import shutil
+shutil.rmtree("/root/file/abc1")
+
+----
+
+import shutil
+shutil.copy("/root/file/abc2/child1/c1.txt","/root/file/")                                 copy file without meta  data
+
+----- 
+
+import shutil
+shutil.copy2("/root/file/abc2/child1/c2.txt","/root/file/")                                copy with meta data
+
+---
+import shutil
+shutil.copyfile("/root/file/abc2/child1/c3.txt","/root/file/copy.txt")                      copy file with rename file also
+----
+import shutil
+shutil.copytree("/root/file/abc2/child1/","/root/file/copytree")                             copy complite directory along with file also
+---
+
+import shutil
+print(shutil.disk_usage("/root/file/abc2"))                                                  check disk use 
+----
+import shutil
+print(shutil.which("python"))                                                                use as which command
+
+--
+import shutil
+print(shutil.get_archive_formats())                                                       get all format to compares file with  shutil  module.
+----
+
+import shutil
+shutil.make_archive('myzip','zip','/root/file')                                           make zip example
+
+
+import shutil
+shutil.make_archive('/home/ec2-user/mytar",'tar','/root/file')                            for tar file
+
+-----
+import shutil
+shutil.unpack_archive('/root/myzip.zip','unzipfile')                                      unzip file
+
+-----grep   permision ------
+
+
+import os
+mode=oct(os.stat('/root/file/').st_mode)[-3:]
+
+print(mode)
+
+------stat function ---------------
+
+stat.S_IRWXU  ->  mask for file owner permissions.
+stat.S_IRUSR  ->  owner has read permission.
+stat.S_IWUSR  ->  owner has write permission.
+stat.S_IXUSR  ->  owner has execute permission.
+stat.S_IRWXG  ->  mask for group permission.
+stat.S_IRGRP  -> group has read permission.
+stat.S_IWGRP  -> group has write permission.
+stat.S_IXGRP  ->  group has execute permission.
+stat.S_IRWXO  -> mask for permissions for others.
+stat.S_IROTH ->  others have read permission.
+stat.S_IWOTH  ->  others have write permission.
+stat.S_IXOTH  -> other has execute permission.
+
+---- change file permission with stat command ------ 
+import os
+import stat
+os.chmod("abc123.txt",stat.S_IRWXU | stat.S_IRGRP | stat.S_IWGRP | stat.S_IROTH)
+--or--
+
+
+import os
+os.chmod("abc123.txt",0o400)
+                      |___________________must be use for octol number
+
+--
+os.chwon('newfile.txt',500,500)          for chang owner 
+
+-- use Path module for grep user and grup ----
+from pathlib import Path
+info=Path("abc123.txt")
+print(info.owner())
+print(info.group())
+---
+os.symlink('/root/file','/root/linkfile')       make symbolig link
+
+-----
+
+import os
+print(os.path.abspath("abc123.txt"))                   ------get complite path 
+
+--
+
+import os
+print(os.path.dirname(os.path.abspath("abc123.txt")))
+
+--
+import os
+
+print(os.path.basename(os.path.abspath("abc123.txt")))     ---print only file base name .
+
+-- check file or directory exit or not -------
+
+import os
+if os.path.exists("/etc/passwd"):
+    print("exist!!!")
+else:
+    print("not exist !!!")
+-----
+
+import os
+if os.path.isfile("abc123.txt"):
+    print("exist!!!")
+else:
+    print("not exist !!!")
+-----
+
+import os
+if os.path.isdir("/etc/passwd"):
+#if os.path.islink("abc1.txt"):
+
+    print("exist!!!")
+else:
+    print("not exist !!!")
+-----
+
+import os
+size=os.path.getsize("/root/")           -get size but in length
+print(size)
+---  get time ---------------
+import os
+import time
+t=os.path.getctime('abc123.txt')
+a=os.path.getatime('abc123.txt')
+m=os.path.getmtime('abc123.txt')
+print(time.ctime(t))
+print(a)
+print(m)
+----join function------ 
+
+import os
+path="/root/file/"
+file="abc.txt"
+new=os.path.join(path,file)
+print(new)                               -print new logical path
+----- use join function create directory and chang path in directory add new file and edite some line ----
+import os   
+
+cwd=os.getcwd()
+dir1="cmdir"
+if not os.path.exists(dir1):
+    os.mkdir(dir1)
+new_dir=os.path.join(cwd,dir1)
+os.chdir(new_dir)
+with open("abc.txt","w") as f:
+    f.write("welcome to kr network")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

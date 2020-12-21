@@ -1,0 +1,85 @@
+string  : -
+
+st1="welcome"
+st2="to kr "
+
+
+# st3=st1+st2
+# print (st3)
+# print("-"*30)
+# print('lc' in st1)
+# print(st1[2:])
+# print(len(st1))
+
+#path=r"/root/newfile/abc.txt     --- always  enter r (row string) to ignor special symbles like /r /n /a  etc
+         |____|_______|__________________________________________________________________________|
+or 
+#path=//root//newfile//abc.txt    --- always  enter // to ignor special symbles like /r /n /a  etc
+
+formating  in string (use for set run time value in bitween string)
+
+x=3
+y=6
+
+z=x+y
+
+st=" some of x and y is z"
+print(st)
+   |
+   |
+
+
+x=3
+y=6
+
+z=x+y
+
+st = " some of {} and {} is {}. formate(x,y,z)               --- use for set run time value in bitween string
+st=f"some of {x} and {y} is {z}"                             ---second type of formating   
+
+print(st)
+
+----------------------------------
+from datetime  import datetime
+
+d=datetime.now().date()
+f=f"server_backup_from{d}"
+----------------------------------
+
+st=" welcome "
+#print(st.lstrip())      --------------delete all space on left side 
+#print(st.lstrip("w"))   --------------delete w from left side
+
+#print(st.rstrip())      --------------delete all space on right side 
+#print(st.rstrip("e"))   --------------delete w from right side
+
+#print(st.strip())      --------------delete all space on both side 
+#print(st.strip("w"))   --------------delete w from both side  
+
+--remove space if user enter space by mistek 
+
+username=input("enter username :")
+ 
+if username.strip()=="root":
+	print("task")
+else:
+	print("not match")
+--- split -- use for break 
+
+st= " hello hi how are you"    --by default  split by space
+ 
+print (st.split())             -- break by space by default
+
+---
+st="hello:hi:how:are:you"
+print (st.split(':',2))
+print (st.rsplit(':',2))   ---for right side
+
+-----print list of .txt file only in directory --
+
+data=['abc.txt','img.png','user.csv',file1.txt',dir1']
+
+for file in data:
+	sp=file.split('.')
+	if sp[-1]=='txt':
+		print(file)

@@ -1,0 +1,119 @@
+---Work with Exil File -------------------
+
+if we want  work with exiting file then first load file then edit after that save file in program. 
+
+ 
+pip3 install openpyxl
+
+-----------for data write only ------------------
+
+#!/usr/local/bin/python3.9
+
+from openpyxl import Workbook,load_workbook
+wb=Workbook()
+sheet1=wb.create_sheet('order')
+sheet1['A1']="Hello"
+sheet1.cell(1,2,"amit")
+wb.save("testfile.xlsx")
+------------------------------
+
+#!/usr/local/bin/python3.9
+from openpyxl import Workbook,load_workbook
+wb=Workbook()
+sheet1=wb.active                           ----------------- Use for active first sheet in file 
+sheet1=wb.create_sheet('order')
+sheet1['A1']="Hello"
+sheet1.cell(1,2,"amit")
+wb.save("testfile.xlsx")
+
+--------------write multiple line in exel file--------
+
+#!/usr/local/bin/python3.9
+from openpyxl import Workbook,load_workbook
+data=[(101,"Amit",23),(102,"deepak",34),(103,"Ram",45)]
+wb=Workbook()
+sheet1=wb.active
+
+row=1
+col=1
+for id,name,age in data:
+    sheet1.cell(row,col,id)
+    sheet1.cell(row,col+1,name)
+    sheet1.cell(row,col+2,age)
+    row=row+1
+wb.save("test2file.xlsx")  
+
+-----------------------
+#!/usr/local/bin/python3.9
+from openpyxl import Workbook,load_workbook
+sheet=wb['order']
+wb=load_workbook("testfile.xlsx")            ----- load work book
+
+wb.remove(sheet)                            -----remove sheet with sheet name
+
+print(wb.sheetnames)                        -----is  pridefine function print how many sheet we have 
+
+print(sheet.title)                          ----print from which sheet we are working
+
+
+wb.save("test2file.xlsx")
+
+------For Data read  --------------
+
+#!/usr/local/bin/python3.9
+from openpyxl import Workbook,load_workbook
+wb=load_workbook("example.xlsx")
+sheet1=wb.active
+print(sheet1[1])                            -----print sheet all row object list in tuple formate 
+# print(sheet1[1][0])                       -----print  first row object from sheet 
+# print(sheet1[1][0].value)                 ----print first row first value from file.
+----------------------------print first row -------------------
+#!/usr/local/bin/python3.9
+from openpyxl import Workbook,load_workbook
+wb=load_workbook("example.xlsx")
+sheet1=wb.active
+for row in sheet1[1]:
+    print(row.value,end=":")
+-------
+from openpyxl import Workbook,load_workbook
+wb=load_workbook("example.xlsx")
+sheet1=wb.active
+for row in sheet1['H']:
+    print(row.value,end=":
+--------- ---print type --------------------
+#!/usr/local/bin/python3.9
+from openpyxl import Workbook,load_workbook
+wb=load_workbook("example.xlsx")
+sheet1=wb.active
+#print(sheet1['A:C'])
+#print(sheet1[1:5])
+print(sheet1['A1:D9'])
+-----Add new coluan in midel sheet---
+
+#!/usr/local/bin/python3.9
+from openpyxl import Workbook,load_workbook
+wb=load_workbook("example.xlsx")
+sheet1=wb.active
+sheet1.insert_cols(idx=3,)
+wb.save('example.xlsx')
+-----for delete coluan in midel---
+#!/usr/local/bin/python3.9
+from openpyxl import Workbook,load_workbook
+wb=load_workbook("example.xlsx")
+sheet1=wb.active
+sheet1.delete_cols(idx=3,amount=3)
+wb.save('example.xlsx')
+-------------insert & delete rows -------------------
+from openpyxl import Workbook,load_workbook
+wb=load_workbook("example.xlsx")
+sheet1=wb.active
+#sheet1.insert_rows(idx=3,amount=3)
+sheet1.delete_rows(idx=3,amount=3)
+wb.save('example.xlsx')
+-----appply formula  ---------------
+
+from openpyxl import Workbook,load_workbook
+wb=load_workbook("example.xlsx")
+sheet1=wb.active
+sheet1['c16']="=SUM(C2:C14)"
+wb.save('example.xlsx')

@@ -1,0 +1,170 @@
+expison handling --
+probably 29  pre define excipen error in python these all are class and all inharitet with excipen class.
+ 
+we 4 block for expison handling 
+
+try
+except
+fnally
+else
+
+try  :-  try block content a set statement where expison occer.
+         try block never come alone it always come with except block or finally block or both.
+         in which line try get expision from that direct it move to handeler not run withinthat line.
+
+except :-  except block alwaye come with try block
+           except block will execute when a particuler type expicion occer within try block.
+
+print("start")
+x=0
+try:
+	res=10/x
+	print(res)
+except ZeroDivisionError:
+	print("can't div by zero")
+print("end")
+
+---Nexted errer----------
+
+#!/usr/local/bin/python3.9
+print("start")
+x=2
+list1=[2,3,4,5]
+try:
+    res=10/x
+    try:
+        print(list1[5])
+    except IndexError:
+        print("out of index")
+    print(res)
+except ZeroDivisionError:
+    print("can't div by zero")
+print("end")
+---or we can print system defoult massage with help of alise ----
+
+#!/usr/local/bin/python3.9
+print("start")
+x=2
+list1=[2,3,4,5]
+try:
+    res=10/x
+    try:
+        print(list1[5])
+    except IndexError or abc:
+        print("abc")        |________________________________alise   
+    print(res)               |
+except ZeroDivisionError or abc:
+    print("abc")
+print("end")
+------------------------------------
+print("start")
+x=2
+list1=[2,3,4,5]
+try:
+    res=10/x
+    print(list1[5])
+    print(res)
+except ZeroDivisionError as abc:
+    print(abc)
+except IndexError as abc:
+        print(abc)
+print("end")
+------------------------------------
+
+print("start")
+x=2
+list1=[2,3,4,5]
+try:
+    res=10/x
+    print(list1[5])
+    print(res)
+except (ZeroDivisionError, IndexError ) as abc:
+    print(abc)
+print("end")
+------------------------------
+#!/usr/local/bin/python3.9
+print("start")
+x=2
+list1=[2,3,4,5]
+try:
+    res=10/x
+    print(list1[5])
+    print(res)  
+except Exception as abc:
+    print(abc) |___________________________________hendel all exception
+print("end")
+-----------------------------
+finally :              always will execut if expecion come or not in both condistion
+
+
+#!/usr/local/bin/python3.9
+print("start")
+x=0
+try:
+    res=10/x
+    int('abc')
+    print(x)
+except ZeroDivisionError as abc:
+    print(abc)
+finally:
+        print("finally block")
+print("end")
+-------else block-----------
+#!/usr/local/bin/python3.9
+print("start")
+x=0
+try:
+    res=10/x
+    print(x)
+except Exception as abc:
+    print(abc)
+else:
+    print("else block")
+finally:
+        print("finally block")
+print("end")
+---------raise expicion  error  -----------
+vim test.py
+
+#!/usr/local/bin/python3.9
+def checkAge(age):
+    if type(age) != int:
+        raise TypeError(f"age ust be in int not {type(age)}")
+    if age>=18:
+        print("valid")
+    else:
+        print("not valid")
+
+vim fng.py
+
+from test import *
+
+checkAge("abc")
+
+----
+
+#!/usr/local/bin/python3.9
+class InvalidAgeError(Exception):   ---------------------------------------enharit from exception 
+    pass
+def checkAge(age):
+    if type(age) != int:
+        raise TypeError(f"age must be in int not {type(age)}")
+    if age>=18:
+        print("valid")
+    else:
+        print("not valid")
+
+-----------traceback------------------
+
+import traceback
+import sys
+f=None
+try:
+    f=open("abc1.txt","r")
+except Exception as ex:
+    traceback.print_exc(file=sys.stdout)
+finally:
+    if f!=None:
+        f.close()
+
+

@@ -1,0 +1,204 @@
+function --  callection of code which we can be call  multiple  time  from only function name 
+type --
+
+1   perametarag
+2   non perametarag
+#def fun_nae(args)
+	#code
+
+
+# func_name()    always with perntihias
+
+
+def msg():                                 
+	print("welcome to Kr")             
+
+
+msg()
+
+-------------------
+
+def msg(x):
+	print(x)
+
+
+msg("wellcom")
+msg("hello")
+
+peramiter ---
+
+
+def info(id,name,city,salary):
+	print("id is :",id)
+	print("nameis :",name)
+	print"city is :",city)
+	print("salary is :",salary)
+
+info(101,"amit","delhi",34000.0)
+info(city='delhi',salary=34000.0,id=101,name="amit")         defanin keyword arugument whic help   defanin any arugument on any place  always provide right side value
+
+
+condision in in function--
+
+
+def info(id,name,city=None,salary=15000.0):
+	print("id is :",id)
+	print("nameis :",name)
+	if city:
+		print"city is :",city)
+	print("salary is :",salary)
+
+info(id=101,name="amit",city="delhi",salary=34000.0)
+info(city='delhi',salary=34000.0,id=101,name="amit")
+
+--variable length ---
+
+def add(*x):
+	pass
+
+add(2,3,4,5,6)         ( x will become in tuple)
+
+---
+example :-  
+
+def add(*x):
+	result=0
+	for i in x:
+		result=result+i
+	print"total is :",result)
+
+add(2,3,4,5,2,3,4,6,7)
+	pass
+
+add(2,3,4,5,6) 
+
+--------
+
+def add(**x):                                 ( we can aoocited key with and value with **)
+	print(x)
+        
+add(host='192.168.0.1',port=22,password='redhat',user='root',)
+
+
+-----result
+
+def add(*var):
+	result=0
+	for x in var:
+		result=result+x
+	print("total is :",result)
+
+x=add(2,3,4,5)
+print(x)
+
+types of functio :-
+
+#local   variable
+#global  variable
+
+
+x=100                   --global
+
+def m1():
+	y=200           --local
+	print(x,y)
+
+def m2():
+ 	print(x)
+	print(y)
+
+
+m1()
+m2()
+ 
+-------------
+
+x=100
+def m1():
+	global y                 make local variable to global variable
+	y=200
+        print(x,y)
+
+def m2():
+	print(x)
+	print(y)
+
+m1()
+m2() 
+
+documentation:
+
+alwayes write on top of function 
+
+exe :
+
+def add(x,y):
+	"""" doc string about add
+function x and y must be int
+   """
+return x+y
+
+
+# help(add)
+
+
+module : collection of related function ,variable,classes
+
+1 some module come by default with
+2 some module we create
+3 some module download by third party
+
+we can store user define module in lib folder for access in all system from any where or
+ same working directory where you are going to  run program.  
+
+exam:
+
+def info():
+	print("welcome to kr ")
+
+def add(x,y):
+	return x+y
+
+name="kr network cloud"
+
+
+--
+import pythonclass9
+
+pythonclass9.info()
+print(pythonclass9.add(2,3))
+print(pythonclass9.name) 
+----------------assing alias in function
+import pythonclass9 as pc9                                
+pc9.info()
+x=pc9.add(5,6)
+print(x)
+print(pc9.name) 
+----we can import only some function in module --
+exe :  info,name import from pythonclass9 module\
+
+
+
+from pythonclass9 import info,name
+
+info()
+print(name)
+
+---import all function from class by * --- 
+
+from pythonclass9 import*
+
+info()
+print(add(2,3))
+print(name)
+
+we can install third prty module with help of pip command 
+
+#pip install module-name
+
+--requirement.txt   -------
+
+pip freeze > requirement.txt    with this automtacle store all module in requirment.txt use for this enverment: 
+
+pip install -r requirement.txt  install all moudules in one time for working enverment .
+ 

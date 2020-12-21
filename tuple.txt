@@ -1,0 +1,44 @@
+() parenthese
+
+tuple  -------
+
+# tuple : ( , )
+#tuple  : index based
+#tuple  : home, hetro
+#tuple  : immutable : read only
+
+single value like (9)   not consider as tuple in python for making single valuue in tuple use ,  after value like ( 9, ) 
+i=(2,4,5,7,6)   is a tuple
+
+list and tuple is same only we can't chang in tuple .
+----------number swaping -------------------------
+1.---
+x=2
+y=8
+
+x,y=y,x
+print(x,y)
+
+2..
+list1=[1,2,3,4,5]
+list1[0],list1[-1]=list1[-1],list1[0]
+print(list1)
+-----print even number in from list 1----
+list1=[12,35,68,21,46,8,13,7,8]
+list2=[]
+for x in list1:
+	if x%2==0:
+        list2.append(x)
+print(list2)
+                      ^
+list comprehension----|
+
+list1=[12,35,68,21,46,8,13,7,8]
+list2=[x for x in list1 if x%2==0]  
+print(list2)
+
+list2=[x for x in list1 if x%2==0 if x>40]
+
+list2=[x+1 for x in list1 ]
+
+list2=[x  if x%2==0 else 0 for x in list1 ]

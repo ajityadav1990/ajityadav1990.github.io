@@ -1,0 +1,59 @@
+.
+# break,  continue , pass
+
+
+break  ---
+
+for x in range(5):   #0,1,2,3,4
+	if x==3:
+	   break
+	print(x)
+print("hello")
+---------
+
+while True:
+    name=input("Enter username :")
+    if name=="root":
+      optison=input("enter yes or no ")
+      if optison=="yes":
+        print("welcom root")
+        break		
+------------------------
+f=open("abc.txt")
+for x in f:
+	if int(x)==90:
+		break
+	print(x)
+continue   ----------
+
+for x in range(5):
+	if x==3:
+		continue
+	print(x)
+
+---------
+
+users=["root","user1","sam","amit"]
+for user in users:
+    if user in['user1','amit']:
+        continue
+    print(user)
+
+
+pass = nule --------
+  - when evere we do not write any thing inside any block simpley we use pass.
+   mostaly use for resolved sentex  error.
+
+if 3>5:                          |
+                                 | not write any statement   get syntex error
+else:                            |
+	print("Hello world ")    |
+
+-----------------
+
+if 3>5:                          
+       pass                       
+else:                            
+	print("Hello world "
+
+

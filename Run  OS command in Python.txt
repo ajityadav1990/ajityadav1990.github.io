@@ -1,0 +1,109 @@
+Run  OS command in Python
+
+1  : OS
+
+
+system ;  we can easly   executed  command by system function but  output not store in any variable.
+--1--
+import os
+
+out=os_system('date')
+print(" output : " , out)
+
+--2--
+import os
+
+out=os.popen('date')
+print("output is :", out.read())
+
+------------------------------------------
+
+2 : subprocess  
+
+call  
+run  :-  after 3.5 & faster then call.
+
+
+import subprocess as sb
+
+out=sb.call(['ls','-l'])
+print("output is :",out)  ______________________________break  ls -l
+     or                  |
+out=sb.call('ls -l',shell=True)
+print("output is :",out)
+
+---output  store in file----- 
+
+import subprocess as sb
+
+f1=open("out.txt","w")
+f2=open("error.txt","w")
+
+out=sb.call('ls -l',shell=True,stdout=f1,stderr=f2)
+print("output is :",out)
+
+f1.close()
+f2.close()
+
+----run  --print output with arugument----
+
+#!/usr/local/bin/python3.9
+import subprocess as sb
+
+f1=open("out.txt","w")
+f2=open("error.txt","w")
+
+#out=sb.run('data')
+#out=sb.run(['ls','-l'])
+#out=sb.run('ls -l',shell=True)
+out=sb.run('ls -l abc.txt',shell=True,stdout=f1,stderr=f2)
+print("output is :",out)
+
+f1.close()
+f2.close()
+---------------------
+
+#!/usr/local/bin/python3.9
+import subprocess as sb
+
+f1=open("out.txt","w")
+f2=open("error.txt","w")
+
+p1=sb.Popen('uptime',stdout=sb.PIPE,stderr=sb.PIPE)
+p2=sb.Popen("awk{'print $3'}",shell=True,stdout=sb.PIPE,stderr=sb.PIPE,stdin=p1.stdout,universal_newlines=True)
+print("output is :",p2.communicate())
+
+f1.close()
+f2.close()
+
+
+import subprocess as sb
+
+f1=open("out.txt","w")
+f2=open("error.txt","w")
+
+#out=sb.run('data')
+#out=sb.run(['ls','-l'])
+#out=sb.run('ls -l',shell=True)                                           ________________it will chang output in string other wise output will be in bytes
+#out=sb.run('ls -l abc.txt',shell=True,stdout=f1,stderr=f2)              |
+out=sb.run('ls -l abc.txt',shell=True,stdout=sb.PIPE,stderr=sb.PIPE,universal_newlines=True)
+print("output is :",out.stdout)                  |_______________________________________________________________pridefine use for stort output in variable
+
+f1.close()
+f2.close()
+--------------------------------------------
+
+
+import subprocess as sb
+
+f1=open("out.txt","w")
+f2=open("error.txt","w")
+
+out=sb.check_output("date",universal_newlines=True)
+print("output is :",out)
+
+f1.close()
+f2.close()
+
+
+-----Popen   mostaly use for multiple pipe --- 
